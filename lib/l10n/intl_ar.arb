@@ -1,0 +1,137 @@
+{
+  "@@locale": "ar",
+  "appTagline": "أهداف جماعية، إنجاز مشترك.",
+  "@appTagline": {
+    "description": "Tagline shown on auth pages below the logo"
+  },
+  "welcomeBack": "مرحبًا بعودتك",
+  "@welcomeBack": {
+    "description": "Title on the login card"
+  },
+  "emailAddress": "البريد الإلكتروني",
+  "@emailAddress": {
+    "description": "Label for email input field"
+  },
+  "emailHint": "Hello@tozher.com",
+  "@emailHint": {
+    "description": "Placeholder hint inside the email text field"
+  },
+  "password": "كلمة المرور",
+  "@password": {
+    "description": "Label for password input field"
+  },
+  "passwordHint": "********",
+  "@passwordHint": {
+    "description": "Placeholder hint inside the password text field"
+  },
+  "forgetPassword": "نسيت كلمة المرور؟",
+  "@forgetPassword": {
+    "description": "Button label to navigate to password reset flow"
+  },
+  "login": "تسجيل الدخول",
+  "@login": {
+    "description": "Label for the login submit button"
+  },
+  "dontHaveAccount": "ليس لديك حساب؟",
+  "@dontHaveAccount": {
+    "description": "Prompt shown below the login form asking if the user needs to register"
+  },
+  "register": "إنشاء حساب",
+  "@register": {
+    "description": "Label for the register button / submit button"
+  },
+  "joinCommunity": "انضم إلى مجتمع مصمم\nللنمو والاحتفال المشترك.",
+  "@joinCommunity": {
+    "description": "Tagline shown on the registration page below the logo"
+  },
+  "fullName": "الاسم الكامل",
+  "@fullName": {
+    "description": "Label for full name input field"
+  },
+  "fullNameHint": "رغد زينو",
+  "@fullNameHint": {
+    "description": "Placeholder hint inside the full name text field"
+  },
+  "username": "اسم المستخدم",
+  "@username": {
+    "description": "Label for username input field"
+  },
+  "usernameHint": "raghad.7o_",
+  "@usernameHint": {
+    "description": "Placeholder hint inside the username text field"
+  },
+  "haveAccount": "لديك حساب؟",
+  "@haveAccount": {
+    "description": "Prompt shown below the registration form asking if the user already has an account"
+  },
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "@resetPassword": {
+    "description": "Title for the password reset page"
+  },
+  "enterEmailForVerification": "أدخل بريدك الإلكتروني لتلقي رمز التحقق.",
+  "@enterEmailForVerification": {
+    "description": "Instruction shown on the password reset page"
+  },
+  "sendCode": "إرسال الرمز",
+  "@sendCode": {
+    "description": "Label for the button that sends the verification code"
+  },
+  "fieldRequired": "الحقل مطلوب",
+  "emailNotValid": "الإيميل غير صالح",
+  "passwordShouldHaveSymbolAndBigLetterAndNumber": "يجب ان تحتوي على رمز وحرف كبير ورقم ولا تقل عن 8 محارف",
+  "enterNewPassword": "ادخل كلمة المرور الجديدة",
+  "@enterNewPassword": {
+    "description": "Title on the change password page"
+  },
+  "verificationCode": "رمز التحقق",
+  "@verificationCode": {
+    "description": "Hint text for the verification code input"
+  },
+  "verificationCodeRequired": "رمز التحقق مطلوب",
+  "@verificationCodeRequired": {
+    "description": "Validation message when verification code is empty"
+  },
+  "newPassword": "كلمة المرور الجديدة",
+  "@newPassword": {
+    "description": "Hint text for the new password input on change password page"
+  },
+  "passwordRequired": "كلمة المرور مطلوبة",
+  "@passwordRequired": {
+    "description": "Validation message when password is empty"
+  },
+  "passwordNotValid": "كلمة المرور غير صالحة",
+  "@passwordNotValid": {
+    "description": "Validation message when password does not meet strength requirements"
+  },
+  "changePassword": "تغيير كلمة المرور",
+  "@changePassword": {
+    "description": "Label for the change password submit button"
+  },
+  "enterCodeSentToAccount": "أدخل كود التحقق الذي وصل على حسابك",
+  "@enterCodeSentToAccount": {
+    "description": "Instruction shown on the confirm code page"
+  },
+  "invalidCode": "كود غير صالح",
+  "@invalidCode": {
+    "description": "Validation message when the entered code is invalid or too short"
+  },
+  "confirmAccount": "تأكيد الحساب",
+  "@confirmAccount": {
+    "description": "Label for the confirm account button"
+  },
+  "errorHappend": "حدث خطأ",
+  "ok": "حسناً",
+  "completedSuccessfully": "تمت العملية بنجاح",
+  "@completedSuccessfully": {
+    "description": "Title shown in the success dialog"
+  },
+  "verificationLinkHaveBeenSent": "تم إرسال رابط التحقق على الإيميل، الرجاء تأكيد الحساب وتسجيل الدخول",
+  "sendEmail": "إرسال إيميل",
+  "resetPasswordEmailHaveBeenSendedSuccessfully" : "تم إرسال أيميل استرجاع كلمة المرور على حسابك",
+  "home": "الرئيسية",
+  "search": "بحث",
+  "goals": "الأهداف",
+  "profile": "الملف الشخصي",
+  "emailNotVerified" : "البريد الإلكتروني غير مؤكد",
+  "pleaseVerifyEmail" : "الرجاء تأكيد بريدك الإلكتروني"
+}

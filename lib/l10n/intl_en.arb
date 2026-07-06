@@ -1,0 +1,137 @@
+{
+  "@@locale": "en",
+  "appTagline": "Collective goals, shared achievement.",
+  "@appTagline": {
+    "description": "Tagline shown on auth pages below the logo"
+  },
+  "welcomeBack": "Welcome Back",
+  "@welcomeBack": {
+    "description": "Title on the login card"
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": "Label for email input field"
+  },
+  "emailHint": "Hello@tozher.com",
+  "@emailHint": {
+    "description": "Placeholder hint inside the email text field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Label for password input field"
+  },
+  "passwordHint": "********",
+  "@passwordHint": {
+    "description": "Placeholder hint inside the password text field"
+  },
+  "forgetPassword": "Forget Password?",
+  "@forgetPassword": {
+    "description": "Button label to navigate to password reset flow"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Label for the login submit button"
+  },
+  "dontHaveAccount": "Don't you have an account?",
+  "@dontHaveAccount": {
+    "description": "Prompt shown below the login form asking if the user needs to register"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Label for the register button / submit button"
+  },
+  "joinCommunity": "Join a community designed for\n shared growth and celebration.",
+  "@joinCommunity": {
+    "description": "Tagline shown on the registration page below the logo"
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Label for full name input field"
+  },
+  "fullNameHint": "Raghad Zeno",
+  "@fullNameHint": {
+    "description": "Placeholder hint inside the full name text field"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Label for username input field"
+  },
+  "usernameHint": "raghad.7o_",
+  "@usernameHint": {
+    "description": "Placeholder hint inside the username text field"
+  },
+  "haveAccount": "You have an account?",
+  "@haveAccount": {
+    "description": "Prompt shown below the registration form asking if the user already has an account"
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "description": "Title for the password reset page"
+  },
+  "enterEmailForVerification": "Enter your email to receive a verification code.",
+  "@enterEmailForVerification": {
+    "description": "Instruction shown on the password reset page"
+  },
+  "sendCode": "Send Code",
+  "@sendCode": {
+    "description": "Label for the button that sends the verification code"
+  },
+  "fieldRequired": "Field required",
+  "emailNotValid": "Email not valid",
+  "passwordShouldHaveSymbolAndBigLetterAndNumber": "password must contain sympol and big letter and number and not least that 8 letters",
+  "enterNewPassword": "Enter New Password",
+  "@enterNewPassword": {
+    "description": "Title on the change password page"
+  },
+  "verificationCode": "Verification Code",
+  "@verificationCode": {
+    "description": "Hint text for the verification code input"
+  },
+  "verificationCodeRequired": "Verification code is required",
+  "@verificationCodeRequired": {
+    "description": "Validation message when verification code is empty"
+  },
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "Hint text for the new password input on change password page"
+  },
+  "passwordRequired": "Password is required",
+  "@passwordRequired": {
+    "description": "Validation message when password is empty"
+  },
+  "passwordNotValid": "Password is not valid",
+  "@passwordNotValid": {
+    "description": "Validation message when password does not meet strength requirements"
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Label for the change password submit button"
+  },
+  "enterCodeSentToAccount": "Enter the verification code sent to your account",
+  "@enterCodeSentToAccount": {
+    "description": "Instruction shown on the confirm code page"
+  },
+  "invalidCode": "Invalid code",
+  "@invalidCode": {
+    "description": "Validation message when the entered code is invalid or too short"
+  },
+  "confirmAccount": "Confirm Account",
+  "@confirmAccount": {
+    "description": "Label for the confirm account button"
+  },
+  "errorHappend": "Error Happend",
+  "ok": "Ok",
+  "completedSuccessfully": "completed successfully",
+  "@completedSuccessfully": {
+    "description": "Title shown in the success dialog"
+  },
+  "verificationLinkHaveBeenSent": "Verification link have been sent, please verify the email and login",
+  "sendEmail": "Send Email",
+  "resetPasswordEmailHaveBeenSendedSuccessfully": "Reset password email have been sended successfully",
+  "home": "Home",
+  "search": "Search",
+  "goals": "Goals",
+  "profile": "Profile",
+  "emailNotVerified" : "Email not verified",
+  "pleaseVerifyEmail" : "Please verify your email"
+}
