@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tozher/features/auth/data/model/auth_create_user_model.dart';
+import 'package:tozher/features/auth/data/model/auth_update_profile_model.dart';
+import 'package:tozher/features/auth/data/model/user_model.dart';
+import 'package:tozher/features/auth/domain/params/auth_update_profile_params.dart';
 
 class AuthSource {
   final FirebaseFirestore _firestore;
@@ -6,10 +10,26 @@ class AuthSource {
 
   AuthSource(this._firestore);
 
-  Future<void> createUser() async {
-    final user = _firestore.collection(collectionName).doc();
-    await user.set({
-      'createdAt': FieldValue.serverTimestamp(),
-    });
+  Future<void> createUser(AuthCreateUserModel authCreateUserModel, String uid) async {
+    final user = _firestore.collection(collectionName).doc(uid);
+    await user.set(authCreateUserModel.toMap());
+  }
+
+  Future<UserModel> userProfile(String uid) async {
+    final user = await _firestore
+        .collection(collectionName)
+        .doc(uid)
+        .get();
+    // print(user.data());
+    if(!user.exists) {
+      throw Exception('User not found');
+    }
+    return UserModel.fromMap(user.data()!);
+  }
+
+  Future<void> updateProfile(AuthUpdateProfileParams params) async {
+    final userModel = params.toModel();
+    final user = _firestore.collection(collectionName).doc(params.uid);
+    await user.update(userModel.toMap());
   }
 }

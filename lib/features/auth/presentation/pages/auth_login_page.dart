@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tozher/features/auth/data/model/user_model.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
 import 'package:tozher/features/core/helpers/validation_helper.dart';
 import 'package:tozher/features/core/presentation/widgets/reusable_bloc_listner.dart';
@@ -47,7 +47,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
     final strings = S.of(context);
 
     return Scaffold(
-      body: ReusableBlocListener<AuthLoginCubit, User?>(
+      body: ReusableBlocListener<AuthLoginCubit, UserModel>(
         cubit: loginCubit,
         onSuccess: (value) {
           if (value?.emailVerified == false) {
@@ -58,7 +58,10 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
             );
             return;
           }
-          
+          if (value?.isProfileCompleted() == false) {
+            context.pushReplacement(RoutePaths.completeProfile);
+            return;
+          }
           context.pushReplacement(RoutePaths.home);
         },
         child: SingleChildScrollView(

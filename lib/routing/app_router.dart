@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:tozher/features/auth/presentation/pages/auth_complete_profile_page.dart';
 import 'package:tozher/features/auth/presentation/pages/auth_login_page.dart';
 import 'package:tozher/features/auth/presentation/pages/auth_register_page.dart';
 import 'package:tozher/features/auth/presentation/pages/auth_send_password_reset_email_page.dart';
@@ -33,6 +34,11 @@ class AppRouter {
           builder: (_, state) {
             return HomeLayout();
           },
+        ),
+        GoRoute(
+          path: RoutePaths.completeProfile,
+          name: RouteNames.completeProfile,
+          builder: (_, _) => const AuthCompleteProfilePage(),
         ),
       ],
       errorBuilder: (context, state) => const NoRouteFoundPage(),

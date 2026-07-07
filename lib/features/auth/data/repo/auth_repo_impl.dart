@@ -1,32 +1,34 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tozher/features/auth/data/model/auth_create_user_model.dart';
+import 'package:tozher/features/auth/data/model/user_model.dart';
 import 'package:tozher/features/auth/data/source/auth_source.dart';
+import 'package:tozher/features/auth/domain/params/auth_update_profile_params.dart';
 import 'package:tozher/features/auth/domain/repo/auth_repo.dart';
 import 'package:tozher/features/core/domain/entity/failure.dart';
 import 'package:tozher/features/core/error/error_converter.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore;
   final AuthSource _authSource;
 
   AuthRepoImpl({
-    required FirebaseFirestore firestore,
     required AuthSource authSource,
-  }) : _authSource = authSource,
-       _firestore = firestore;
+  }) : _authSource = authSource;
 
   @override
-  Future<Either<Failure, UserCredential>> login(
+  Future<Either<Failure, UserModel>> login(
     String email,
     String password,
   ) async {
     return ErrorConverter.safeCall(() async {
-      return await _firebaseAuth.signInWithEmailAndPassword(
+      final res = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      final user = await _authSource.userProfile(res.user!.uid);
+      user.emailVerified = res.user!.emailVerified;
+      return user;
     });
   }
 
@@ -59,12 +61,21 @@ class AuthRepoImpl extends AuthRepo {
       );
 
       await res.user?.sendEmailVerification();
-
-      _firestore.collection('users').doc(res.user?.uid).set({
-        'email': email,
-        'createdAt': FieldValue.serverTimestamp(),
-      });
+      await _authSource.createUser(
+        AuthCreateUserModel(
+          email: email,
+          password: password,
+        ),
+        res.user!.uid,
+      );
       return res;
+    });
+  }
+
+  @override
+  Future<Either<Failure, void>> updateProfile(AuthUpdateProfileParams params) {
+    return ErrorConverter.safeCall(() async {
+      await _authSource.updateProfile(params);
     });
   }
 }

@@ -29,7 +29,6 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
-      firestore: FirebaseFirestore.instance,
       authSource: getIt<AuthSource>(),
     ),
   );
