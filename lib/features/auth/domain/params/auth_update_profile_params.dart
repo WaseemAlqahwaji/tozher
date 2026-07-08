@@ -12,8 +12,8 @@ class AuthUpdateProfileParams {
     required this.username,
     required this.age,
     required this.gender,
-    required this.points,
-    required this.role,
+    this.points = 0,
+    this.role = "user",
     required this.uid,
   });
 }

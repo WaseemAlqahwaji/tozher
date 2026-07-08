@@ -14,5 +14,5 @@ class AuthCreateUserModel {
       'password': password,
     };
   }
-}
+} 
 

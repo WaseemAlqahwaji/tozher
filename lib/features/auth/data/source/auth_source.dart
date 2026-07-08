@@ -10,26 +10,34 @@ class AuthSource {
 
   AuthSource(this._firestore);
 
-  Future<void> createUser(AuthCreateUserModel authCreateUserModel, String uid) async {
+  Future<void> createUser(
+    AuthCreateUserModel authCreateUserModel,
+    String uid,
+  ) async {
     final user = _firestore.collection(collectionName).doc(uid);
     await user.set(authCreateUserModel.toMap());
   }
 
   Future<UserModel> userProfile(String uid) async {
-    final user = await _firestore
-        .collection(collectionName)
-        .doc(uid)
-        .get();
-    // print(user.data());
-    if(!user.exists) {
-      throw Exception('User not found');
+    final user = await _firestore.collection(collectionName).doc(uid).get();
+    if (!user.exists) {
+      throw Exception("User not found");
     }
     return UserModel.fromMap(user.data()!);
   }
 
   Future<void> updateProfile(AuthUpdateProfileParams params) async {
-    final userModel = params.toModel();
-    final user = _firestore.collection(collectionName).doc(params.uid);
-    await user.update(userModel.toMap());
+    final docRef = FirebaseFirestore.instance
+        .collection(collectionName)
+        .doc(params.username);
+    final docSnapshot = await docRef.get();
+
+    if (!docSnapshot.exists) {
+      final userModel = params.toModel();
+      final user = _firestore.collection(collectionName).doc(params.uid);
+      await user.update(userModel.toMap());
+    } else {
+      throw Exception("username already taken");
+    }
   }
 }

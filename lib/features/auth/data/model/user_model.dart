@@ -8,6 +8,7 @@ class UserModel {
   final int? points;
   final String? role;
   bool? emailVerified;
+  String? uid;
 
   UserModel({
     required this.email,
@@ -18,6 +19,7 @@ class UserModel {
     this.points,
     this.role,
     this.emailVerified,
+    this.uid,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map) {

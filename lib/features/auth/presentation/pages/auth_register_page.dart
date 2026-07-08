@@ -68,22 +68,6 @@ class _AuthRegisterPageState extends State<AuthRegisterPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(strings.fullName),
-                        Gap(8.h),
-                        TextFormField(
-                          controller: fullNameController,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.person_outline),
-                            hintText: strings.fullNameHint,
-                          ),
-                          validator: (value) {
-                            if (ValidationHelper.isNullOrEmpty(value)) {
-                              return strings.fieldRequired;
-                            }
-                            return null;
-                          },
-                        ),
-                        Gap(16.h),
                         Text(strings.emailAddress),
                         Gap(8.h),
                         TextFormField(

@@ -7,6 +7,65 @@ class AppTheme {
   static const String secondaryFontFamily = 'Inter';
 
   // ---------------------------------------------------------------------------
+  // Shared Input Decorations
+  // ---------------------------------------------------------------------------
+  static final InputDecorationTheme _lightInputDecoration = InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.white,
+    errorMaxLines: 3,
+    contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: BorderSide(color: AppColors.surfaceSecondary),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: BorderSide(
+        color: AppColors.surfaceSecondary.withValues(alpha: 0.6),
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: const BorderSide(color: AppColors.primary, width: 2),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: const BorderSide(color: AppColors.error),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: const BorderSide(color: AppColors.error, width: 2),
+    ),
+    hintStyle: TextStyle(
+      color: AppColors.textSecondary.withValues(alpha: 0.7),
+      fontSize: 14.sp,
+    ),
+  );
+
+  static final InputDecorationTheme _darkInputDecoration = InputDecorationTheme(
+    filled: true,
+    errorMaxLines: 3,
+    fillColor: AppColors.darkSurface,
+    contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: BorderSide.none,
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.1)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.r),
+      borderSide: const BorderSide(color: AppColors.primary, width: 2),
+    ),
+    hintStyle: TextStyle(
+      color: AppColors.darkText.withValues(alpha: 0.4),
+      fontSize: 14.sp,
+    ),
+  );
+
+  // ---------------------------------------------------------------------------
   // Light Theme – Tozher palette
   // ---------------------------------------------------------------------------
   static ThemeData get lightTheme {
@@ -133,37 +192,9 @@ class AppTheme {
       ),
 
       // -- Input Decoration ---------------------------------------------------
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: Colors.white,
-        errorMaxLines: 3,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: BorderSide(color: AppColors.surfaceSecondary),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: BorderSide(
-            color: AppColors.surfaceSecondary.withValues(alpha: 0.6),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: AppColors.error),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: AppColors.error, width: 2),
-        ),
-        hintStyle: TextStyle(
-          color: AppColors.textSecondary.withValues(alpha: 0.7),
-          fontSize: 14.sp,
-        ),
+      inputDecorationTheme: _lightInputDecoration,
+      dropdownMenuTheme: DropdownMenuThemeData(
+        inputDecorationTheme: _lightInputDecoration,
       ),
 
       // -- Chips --------------------------------------------------------------
@@ -451,28 +482,9 @@ class AppTheme {
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       ),
 
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        errorMaxLines: 3,
-
-        fillColor: AppColors.darkSurface,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.1)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
-        ),
-        hintStyle: TextStyle(
-          color: AppColors.darkText.withValues(alpha: 0.4),
-          fontSize: 14.sp,
-        ),
+      inputDecorationTheme: _darkInputDecoration,
+      dropdownMenuTheme: DropdownMenuThemeData(
+        inputDecorationTheme: _darkInputDecoration,
       ),
 
       progressIndicatorTheme: const ProgressIndicatorThemeData(

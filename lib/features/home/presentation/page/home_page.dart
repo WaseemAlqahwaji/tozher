@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tozher/features/core/constants/app_constants.dart';
 import 'package:tozher/features/core/presentation/widgets/reusable_bloc_builder.dart';
 import 'package:tozher/features/interests/domain/entity/interest.dart';
-import 'package:tozher/features/interests/presentation/cubit/interest_add_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interest_get_cubit.dart';
 import 'package:tozher/features/interests/presentation/widget/interests_chips_list.dart';
 import 'package:tozher/injection.dart';
@@ -16,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final addInterestCubit = getIt<InterestAddCubit>();
+  // final addInterestCubit = getIt<InterestAddCubit>();
   final getInterestCubit = getIt<InterestGetCubit>();
 
   @override

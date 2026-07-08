@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -385,12 +389,7 @@ class S {
 
   /// `Ok`
   String get ok {
-    return Intl.message(
-      'Ok',
-      name: 'ok',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ok', name: 'ok', desc: '', args: []);
   }
 
   /// `completed successfully`
@@ -415,12 +414,7 @@ class S {
 
   /// `Send Email`
   String get sendEmail {
-    return Intl.message(
-      'Send Email',
-      name: 'sendEmail',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Send Email', name: 'sendEmail', desc: '', args: []);
   }
 
   /// `Reset password email have been sended successfully`
@@ -435,42 +429,22 @@ class S {
 
   /// `Home`
   String get home {
-    return Intl.message(
-      'Home',
-      name: 'home',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Home', name: 'home', desc: '', args: []);
   }
 
   /// `Search`
   String get search {
-    return Intl.message(
-      'Search',
-      name: 'search',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Search', name: 'search', desc: '', args: []);
   }
 
   /// `Goals`
   String get goals {
-    return Intl.message(
-      'Goals',
-      name: 'goals',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Goals', name: 'goals', desc: '', args: []);
   }
 
   /// `Profile`
   String get profile {
-    return Intl.message(
-      'Profile',
-      name: 'profile',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
 
   /// `Email not verified`
@@ -488,6 +462,96 @@ class S {
     return Intl.message(
       'Please verify your email',
       name: 'pleaseVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete your profile`
+  String get completeYourProfile {
+    return Intl.message(
+      'Complete your profile',
+      name: 'completeYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full name should be more than 3 letters`
+  String get fullnameShouldBeMoreThat3Letters {
+    return Intl.message(
+      'Full name should be more than 3 letters',
+      name: 'fullnameShouldBeMoreThat3Letters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username should be more than 3 letters`
+  String get usernameShouldBeMoreThat3Letters {
+    return Intl.message(
+      'Username should be more than 3 letters',
+      name: 'usernameShouldBeMoreThat3Letters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `age`
+  String get age {
+    return Intl.message('age', name: 'age', desc: '', args: []);
+  }
+
+  /// `male`
+  String get male {
+    return Intl.message('male', name: 'male', desc: '', args: []);
+  }
+
+  /// `female`
+  String get female {
+    return Intl.message('female', name: 'female', desc: '', args: []);
+  }
+
+  /// `gender`
+  String get gender {
+    return Intl.message('gender', name: 'gender', desc: '', args: []);
+  }
+
+  /// `Let's go`
+  String get letsGo {
+    return Intl.message('Let\'s go', name: 'letsGo', desc: '', args: []);
+  }
+
+  /// `Enter your age`
+  String get ageHint {
+    return Intl.message('Enter your age', name: 'ageHint', desc: '', args: []);
+  }
+
+  /// `Select your gender`
+  String get genderHint {
+    return Intl.message(
+      'Select your gender',
+      name: 'genderHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get userNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username has been taken, change it`
+  String get usernameHasBeenTakenChangeIt {
+    return Intl.message(
+      'Username has been taken, change it',
+      name: 'usernameHasBeenTakenChangeIt',
       desc: '',
       args: [],
     );

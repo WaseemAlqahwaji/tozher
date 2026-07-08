@@ -28,6 +28,7 @@ class AuthRepoImpl extends AuthRepo {
       );
       final user = await _authSource.userProfile(res.user!.uid);
       user.emailVerified = res.user!.emailVerified;
+      user.uid = res.user!.uid;
       return user;
     });
   }

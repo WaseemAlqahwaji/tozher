@@ -22,72 +22,103 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appTagline": MessageLookupByLibrary.simpleMessage(
-            "Collective goals, shared achievement."),
-        "changePassword":
-            MessageLookupByLibrary.simpleMessage("Change Password"),
-        "completedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("completed successfully"),
-        "confirmAccount":
-            MessageLookupByLibrary.simpleMessage("Confirm Account"),
-        "dontHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Don\'t you have an account?"),
-        "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
-        "emailHint": MessageLookupByLibrary.simpleMessage("Hello@tozher.com"),
-        "emailNotValid":
-            MessageLookupByLibrary.simpleMessage("Email not valid"),
-        "emailNotVerified":
-            MessageLookupByLibrary.simpleMessage("Email not verified"),
-        "enterCodeSentToAccount": MessageLookupByLibrary.simpleMessage(
-            "Enter the verification code sent to your account"),
-        "enterEmailForVerification": MessageLookupByLibrary.simpleMessage(
-            "Enter your email to receive a verification code."),
-        "enterNewPassword":
-            MessageLookupByLibrary.simpleMessage("Enter New Password"),
-        "errorHappend": MessageLookupByLibrary.simpleMessage("Error Happend"),
-        "fieldRequired": MessageLookupByLibrary.simpleMessage("Field required"),
-        "forgetPassword":
-            MessageLookupByLibrary.simpleMessage("Forget Password?"),
-        "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
-        "fullNameHint": MessageLookupByLibrary.simpleMessage("Raghad Zeno"),
-        "goals": MessageLookupByLibrary.simpleMessage("Goals"),
-        "haveAccount":
-            MessageLookupByLibrary.simpleMessage("You have an account?"),
-        "home": MessageLookupByLibrary.simpleMessage("Home"),
-        "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
-        "joinCommunity": MessageLookupByLibrary.simpleMessage(
-            "Join a community designed for\n shared growth and celebration."),
-        "login": MessageLookupByLibrary.simpleMessage("Login"),
-        "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
-        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
-        "password": MessageLookupByLibrary.simpleMessage("Password"),
-        "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
-        "passwordNotValid":
-            MessageLookupByLibrary.simpleMessage("Password is not valid"),
-        "passwordRequired":
-            MessageLookupByLibrary.simpleMessage("Password is required"),
-        "passwordShouldHaveSymbolAndBigLetterAndNumber":
-            MessageLookupByLibrary.simpleMessage(
-                "password must contain sympol and big letter and number and not least that 8 letters"),
-        "pleaseVerifyEmail":
-            MessageLookupByLibrary.simpleMessage("Please verify your email"),
-        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
-        "register": MessageLookupByLibrary.simpleMessage("Register"),
-        "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
-        "resetPasswordEmailHaveBeenSendedSuccessfully":
-            MessageLookupByLibrary.simpleMessage(
-                "Reset password email have been sended successfully"),
-        "search": MessageLookupByLibrary.simpleMessage("Search"),
-        "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
-        "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
-        "username": MessageLookupByLibrary.simpleMessage("Username"),
-        "usernameHint": MessageLookupByLibrary.simpleMessage("raghad.7o_"),
-        "verificationCode":
-            MessageLookupByLibrary.simpleMessage("Verification Code"),
-        "verificationCodeRequired": MessageLookupByLibrary.simpleMessage(
-            "Verification code is required"),
-        "verificationLinkHaveBeenSent": MessageLookupByLibrary.simpleMessage(
-            "Verification link have been sent, please verify the email and login"),
-        "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back")
-      };
+    "age": MessageLookupByLibrary.simpleMessage("age"),
+    "ageHint": MessageLookupByLibrary.simpleMessage("Enter your age"),
+    "appTagline": MessageLookupByLibrary.simpleMessage(
+      "Collective goals, shared achievement.",
+    ),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "completeYourProfile": MessageLookupByLibrary.simpleMessage(
+      "Complete your profile",
+    ),
+    "completedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "completed successfully",
+    ),
+    "confirmAccount": MessageLookupByLibrary.simpleMessage("Confirm Account"),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don\'t you have an account?",
+    ),
+    "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+    "emailHint": MessageLookupByLibrary.simpleMessage("Hello@tozher.com"),
+    "emailNotValid": MessageLookupByLibrary.simpleMessage("Email not valid"),
+    "emailNotVerified": MessageLookupByLibrary.simpleMessage(
+      "Email not verified",
+    ),
+    "enterCodeSentToAccount": MessageLookupByLibrary.simpleMessage(
+      "Enter the verification code sent to your account",
+    ),
+    "enterEmailForVerification": MessageLookupByLibrary.simpleMessage(
+      "Enter your email to receive a verification code.",
+    ),
+    "enterNewPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter New Password",
+    ),
+    "errorHappend": MessageLookupByLibrary.simpleMessage("Error Happend"),
+    "female": MessageLookupByLibrary.simpleMessage("female"),
+    "fieldRequired": MessageLookupByLibrary.simpleMessage("Field required"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forget Password?"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "fullNameHint": MessageLookupByLibrary.simpleMessage("Raghad Zeno"),
+    "fullnameShouldBeMoreThat3Letters": MessageLookupByLibrary.simpleMessage(
+      "Full name should be more than 3 letters",
+    ),
+    "gender": MessageLookupByLibrary.simpleMessage("gender"),
+    "genderHint": MessageLookupByLibrary.simpleMessage("Select your gender"),
+    "goals": MessageLookupByLibrary.simpleMessage("Goals"),
+    "haveAccount": MessageLookupByLibrary.simpleMessage("You have an account?"),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+    "joinCommunity": MessageLookupByLibrary.simpleMessage(
+      "Join a community designed for\n shared growth and celebration.",
+    ),
+    "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s go"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "male": MessageLookupByLibrary.simpleMessage("male"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+    "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
+    "passwordNotValid": MessageLookupByLibrary.simpleMessage(
+      "Password is not valid",
+    ),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "Password is required",
+    ),
+    "passwordShouldHaveSymbolAndBigLetterAndNumber":
+        MessageLookupByLibrary.simpleMessage(
+          "password must contain sympol and big letter and number and not least that 8 letters",
+        ),
+    "pleaseVerifyEmail": MessageLookupByLibrary.simpleMessage(
+      "Please verify your email",
+    ),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "resetPasswordEmailHaveBeenSendedSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Reset password email have been sended successfully",
+        ),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
+    "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
+    "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
+    "username": MessageLookupByLibrary.simpleMessage("Username"),
+    "usernameHasBeenTakenChangeIt": MessageLookupByLibrary.simpleMessage(
+      "Username has been taken, change it",
+    ),
+    "usernameHint": MessageLookupByLibrary.simpleMessage("raghad.7o_"),
+    "usernameShouldBeMoreThat3Letters": MessageLookupByLibrary.simpleMessage(
+      "Username should be more than 3 letters",
+    ),
+    "verificationCode": MessageLookupByLibrary.simpleMessage(
+      "Verification Code",
+    ),
+    "verificationCodeRequired": MessageLookupByLibrary.simpleMessage(
+      "Verification code is required",
+    ),
+    "verificationLinkHaveBeenSent": MessageLookupByLibrary.simpleMessage(
+      "Verification link have been sent, please verify the email and login",
+    ),
+    "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+  };
 }

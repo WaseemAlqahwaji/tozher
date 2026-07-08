@@ -38,7 +38,10 @@ class AppRouter {
         GoRoute(
           path: RoutePaths.completeProfile,
           name: RouteNames.completeProfile,
-          builder: (_, _) => const AuthCompleteProfilePage(),
+          builder: (_, state) {
+            final userUid = state.extra as String;
+            return AuthCompleteProfilePage(userUid: userUid);
+          },
         ),
       ],
       errorBuilder: (context, state) => const NoRouteFoundPage(),

@@ -132,6 +132,18 @@
   "search": "Search",
   "goals": "Goals",
   "profile": "Profile",
-  "emailNotVerified" : "Email not verified",
-  "pleaseVerifyEmail" : "Please verify your email"
+  "emailNotVerified": "Email not verified",
+  "pleaseVerifyEmail": "Please verify your email",
+  "completeYourProfile": "Complete your profile",
+  "fullnameShouldBeMoreThat3Letters": "Full name should be more than 3 letters",
+  "usernameShouldBeMoreThat3Letters": "Username should be more than 3 letters",
+  "age": "age",
+  "male": "male",
+  "female": "female",
+  "gender": "gender",
+  "letsGo": "Let's go",
+  "ageHint": "Enter your age",
+  "genderHint": "Select your gender",
+  "userNotFound" : "User not found",
+  "usernameHasBeenTakenChangeIt" : "Username has been taken, change it"
 }

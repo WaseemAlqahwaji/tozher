@@ -11,6 +11,7 @@ import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_logout_cubit.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_register_cubit.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_send_password_reset_email_cubit.dart';
+import 'package:tozher/features/auth/presentation/cubit/auth_update_profile_cubit.dart';
 import 'package:tozher/features/core/presentation/cubit/localization/localization_cubit.dart';
 import 'package:tozher/features/interests/data/repo/interest_repo_impl.dart';
 import 'package:tozher/features/interests/data/source/interest_source.dart';
@@ -44,6 +45,9 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<AuthLogoutCubit>(
     () => AuthLogoutCubit(authRepo: getIt<AuthRepo>()),
+  );
+  getIt.registerFactory<AuthUpdateProfileCubit>(
+    () => AuthUpdateProfileCubit(authRepo: getIt<AuthRepo>()),
   );
 
   // Interests
