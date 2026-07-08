@@ -20,18 +20,17 @@ import 'package:tozher/features/interests/presentation/cubit/interest_add_cubit.
 import 'package:tozher/features/interests/presentation/cubit/interest_delete_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interest_get_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interest_update_cubit.dart';
+import 'package:tozher/features/interests/presentation/cubit/interests_get_user_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
 Future<void> configureInjection(String env) async {
   getIt.registerSingleton<LocalizationCubit>(LocalizationCubit());
-   getIt.registerLazySingleton<AuthSource>(
+  getIt.registerLazySingleton<AuthSource>(
     () => AuthSource(FirebaseFirestore.instance),
   );
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepoImpl(
-      authSource: getIt<AuthSource>(),
-    ),
+    () => AuthRepoImpl(authSource: getIt<AuthSource>()),
   );
 
   getIt.registerSingleton<AuthLoginCubit>(
@@ -52,7 +51,7 @@ Future<void> configureInjection(String env) async {
 
   // Interests
   getIt.registerLazySingleton<InterestSource>(
-    () => InterestSource(FirebaseFirestore.instance),
+    () => InterestSource(FirebaseFirestore.instance, getIt<AuthSource>()),
   );
   getIt.registerLazySingleton<InterestRepo>(
     () => InterestRepoImpl(getIt<InterestSource>()),
@@ -69,6 +68,9 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<InterestDeleteCubit>(
     () => InterestDeleteCubit(interestRepo: getIt<InterestRepo>()),
+  );
+  getIt.registerFactory<InterestsGetUserCubit>(
+    () => InterestsGetUserCubit(interestRepo: getIt<InterestRepo>()),
   );
 }
 
