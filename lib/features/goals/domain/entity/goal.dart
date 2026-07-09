@@ -1,3 +1,5 @@
+import 'package:tozher/features/goals/domain/entity/achievement.dart';
+
 class Goal {
   final String id;
   final String userId;
@@ -6,8 +8,9 @@ class Goal {
   final DateTime date;
   final DateTime reminderDate;
   final String status;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final DateTime createdAt;
+  final bool isPrivate;
+  final List<Achievement> achievements;
 
   const Goal({
     required this.id,
@@ -17,8 +20,9 @@ class Goal {
     required this.date,
     required this.reminderDate,
     required this.status,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.isPrivate,
+    this.achievements = const [],
   });
 
   Goal copyWith({
@@ -31,6 +35,8 @@ class Goal {
     String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
+    bool? isPrivate,
+    List<Achievement>? achievements,
   }) {
     return Goal(
       id: id ?? this.id,
@@ -41,7 +47,8 @@ class Goal {
       reminderDate: reminderDate ?? this.reminderDate,
       status: status ?? this.status,
       createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
+      isPrivate: isPrivate ?? this.isPrivate,
+      achievements: achievements ?? this.achievements,
     );
   }
 }

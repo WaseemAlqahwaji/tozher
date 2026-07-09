@@ -1,20 +1,17 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:tozher/features/goals/data/model/achievement_model.dart';
 import 'package:tozher/features/goals/domain/entity/goal.dart';
 
 class GoalModel {
   final String id;
-  @JsonKey(name: 'user_id')
   final String userId;
   final String name;
   final String description;
   final DateTime date;
-  @JsonKey(name: 'reminder_date')
   final DateTime reminderDate;
+  final DateTime createdAt;
   final String status;
-  @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
+  final bool isPrivate;
+  final List<AchievementModel> achievements;
 
   const GoalModel({
     required this.id,
@@ -24,8 +21,9 @@ class GoalModel {
     required this.date,
     required this.reminderDate,
     required this.status,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.isPrivate,
+    this.achievements = const [],
   });
 
   Goal toEntity() => Goal(
@@ -37,20 +35,22 @@ class GoalModel {
     reminderDate: reminderDate,
     status: status,
     createdAt: createdAt,
-    updatedAt: updatedAt,
+    isPrivate: isPrivate,
+    achievements: achievements.map((a) => a.toEntity()).toList(),
   );
 
   factory GoalModel.fromEntity(Goal entity) => GoalModel(
-        id: entity.id,
-        userId: entity.userId,
-        name: entity.name,
-        description: entity.description,
-        date: entity.date,
-        reminderDate: entity.reminderDate,
-        status: entity.status,
-        createdAt: entity.createdAt,
-        updatedAt: entity.updatedAt,
-      );
+    id: entity.id,
+    userId: entity.userId,
+    name: entity.name,
+    description: entity.description,
+    date: entity.date,
+    reminderDate: entity.reminderDate,
+    status: entity.status,
+    createdAt: entity.createdAt,
+    isPrivate: entity.isPrivate,
+    achievements: entity.achievements.map((a) => AchievementModel.fromEntity(a)).toList(),
+  );
 
   factory GoalModel.fromMap(Map<String, dynamic> map) {
     return GoalModel(
@@ -61,12 +61,8 @@ class GoalModel {
       date: _parseDateTime(map['date']),
       reminderDate: _parseDateTime(map['reminder_date']),
       status: map['status'] as String? ?? 'private',
-      createdAt: map['created_at'] != null
-          ? _parseDateTime(map['created_at'])
-          : null,
-      updatedAt: map['updated_at'] != null
-          ? _parseDateTime(map['updated_at'])
-          : null,
+      createdAt: map['created_at'],
+      isPrivate: map['is_private'],
     );
   }
 
@@ -80,7 +76,7 @@ class GoalModel {
       'reminder_date': reminderDate,
       'status': status,
       'created_at': createdAt,
-      'updated_at': updatedAt,
+      'is_private': isPrivate,
     };
   }
 

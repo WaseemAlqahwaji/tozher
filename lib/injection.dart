@@ -21,6 +21,15 @@ import 'package:tozher/features/interests/presentation/cubit/interest_delete_cub
 import 'package:tozher/features/interests/presentation/cubit/interest_get_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interest_update_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interests_get_user_cubit.dart';
+import 'package:tozher/features/goals/data/repo/goal_repo_impl.dart';
+import 'package:tozher/features/goals/data/source/goal_source.dart';
+import 'package:tozher/features/goals/domain/repo/goal_repo.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_add_cubit.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_delete_cubit.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_toggle_achievement_cubit.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_update_cubit.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_update_visibility_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -71,6 +80,33 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<InterestsGetUserCubit>(
     () => InterestsGetUserCubit(interestRepo: getIt<InterestRepo>()),
+  );
+
+  // Goals
+  getIt.registerLazySingleton<GoalSource>(
+    () => GoalSource(FirebaseFirestore.instance),
+  );
+  getIt.registerLazySingleton<GoalRepo>(
+    () => GoalRepoImpl(getIt<GoalSource>()),
+  );
+
+  getIt.registerFactory<GoalGetCubit>(
+    () => GoalGetCubit(goalRepo: getIt<GoalRepo>()),
+  );
+  getIt.registerFactory<GoalAddCubit>(
+    () => GoalAddCubit(goalRepo: getIt<GoalRepo>()),
+  );
+  getIt.registerFactory<GoalUpdateCubit>(
+    () => GoalUpdateCubit(goalRepo: getIt<GoalRepo>()),
+  );
+  getIt.registerFactory<GoalDeleteCubit>(
+    () => GoalDeleteCubit(goalRepo: getIt<GoalRepo>()),
+  );
+  getIt.registerFactory<GoalUpdateVisibilityCubit>(
+    () => GoalUpdateVisibilityCubit(goalRepo: getIt<GoalRepo>()),
+  );
+  getIt.registerFactory<GoalToggleAchievementCubit>(
+    () => GoalToggleAchievementCubit(goalRepo: getIt<GoalRepo>()),
   );
 }
 

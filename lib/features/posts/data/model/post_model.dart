@@ -10,7 +10,6 @@ class PostModel {
   final int supportCount;
   final int shareCount;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final List<InterestModel> interests;
 
   PostModel({
@@ -22,7 +21,6 @@ class PostModel {
     required this.supportCount,
     required this.shareCount,
     required this.createdAt,
-    required this.updatedAt,
     required this.interests,
   });
 
@@ -35,7 +33,6 @@ class PostModel {
     supportCount: supportCount,
     shareCount: shareCount,
     createdAt: createdAt,
-    updatedAt: updatedAt,
     interestsNames: interests.map((interest) => interest.name).toList(),
   );
 
@@ -52,7 +49,6 @@ class PostModel {
       supportCount: map['supportCount'] as int,
       shareCount: map['shareCount'] as int,
       createdAt: _parseDateTime(map['createdAt']),
-      updatedAt: _parseDateTime(map['updatedAt']),
       interests: interests,
     );
   }
