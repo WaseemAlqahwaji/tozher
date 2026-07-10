@@ -727,6 +727,56 @@ class S {
     );
   }
 
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: 'Cancel button label',
+      args: [],
+    );
+  }
+
+  /// `Post`
+  String get post {
+    return Intl.message(
+      'Post',
+      name: 'post',
+      desc: 'Post button label for creating a post',
+      args: [],
+    );
+  }
+
+  /// `What's on your mind?`
+  String get whatsOnYourMind {
+    return Intl.message(
+      'What\'s on your mind?',
+      name: 'whatsOnYourMind',
+      desc: 'Placeholder hint for post title input',
+      args: [],
+    );
+  }
+
+  /// `Add Photos`
+  String get addPhotos {
+    return Intl.message(
+      'Add Photos',
+      name: 'addPhotos',
+      desc: 'Label for the add photos upload area',
+      args: [],
+    );
+  }
+
+  /// `MENTION INTERESTS`
+  String get mentionInterests {
+    return Intl.message(
+      'MENTION INTERESTS',
+      name: 'mentionInterests',
+      desc: 'Section title for mentioning interests in a post',
+      args: [],
+    );
+  }
+
   /// `No achievements yet`
   String get noAchievementsYet {
     return Intl.message(

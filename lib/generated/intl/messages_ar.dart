@@ -26,12 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "achievementHint": m0,
     "addAchievement": MessageLookupByLibrary.simpleMessage("أضف إنجازاً"),
+    "addPhotos": MessageLookupByLibrary.simpleMessage("أضف صوراً"),
     "age": MessageLookupByLibrary.simpleMessage("العمر"),
     "ageHint": MessageLookupByLibrary.simpleMessage("أدخل عمرك"),
     "appName": MessageLookupByLibrary.simpleMessage("توذر"),
     "appTagline": MessageLookupByLibrary.simpleMessage(
       "أهداف جماعية، إنجاز مشترك.",
     ),
+    "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "completedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت العملية بنجاح",
@@ -86,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "letsGo": MessageLookupByLibrary.simpleMessage("هيا بنا"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+    "mentionInterests": MessageLookupByLibrary.simpleMessage("ذكر اهتمامات"),
     "newGoal": MessageLookupByLibrary.simpleMessage("هدف جديد"),
     "newGoalSubtitle": MessageLookupByLibrary.simpleMessage(
       "حدد نواياك ودع المجتمع يشجعك",
@@ -110,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseVerifyEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء تأكيد بريدك الإلكتروني",
     ),
+    "post": MessageLookupByLibrary.simpleMessage("نشر"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "publicGoal": MessageLookupByLibrary.simpleMessage("هدف عام"),
     "publicGoalDescription": MessageLookupByLibrary.simpleMessage(
@@ -147,5 +151,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إرسال رابط التحقق على الإيميل، الرجاء تأكيد الحساب وتسجيل الدخول",
     ),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
+    "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
+      "ما الذي يدور في ذهنك؟",
+    ),
   };
 }

@@ -7,6 +7,7 @@ import 'package:tozher/features/core/presentation/page/no_route_found_page.dart'
 import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
 import 'package:tozher/features/goals/presentation/pages/goal_add_page.dart';
 import 'package:tozher/features/home/presentation/page/home_layout.dart';
+import 'package:tozher/features/posts/presentation/pages/post_add_page.dart';
 import 'route_paths.dart';
 import 'route_names.dart';
 
@@ -35,6 +36,13 @@ class AppRouter {
           name: RouteNames.home,
           builder: (_, state) {
             return HomeLayout();
+          },
+        ),
+        GoRoute(
+          path: RoutePaths.addPost,
+          name: RouteNames.addPost,
+          builder: (_, state) {
+            return PostAddPage();
           },
         ),
         GoRoute(

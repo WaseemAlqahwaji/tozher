@@ -7,7 +7,7 @@ class Post {
   final int supportCount;
   final int shareCount;
   final DateTime createdAt;
-  final List<String> interestsNames;
+  final String? interestName;
 
   const Post({
     required this.id,
@@ -18,6 +18,6 @@ class Post {
     required this.supportCount,
     required this.shareCount,
     required this.createdAt,
-    required this.interestsNames,
+    this.interestName,
   });
 }

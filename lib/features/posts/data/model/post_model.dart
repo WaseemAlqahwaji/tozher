@@ -1,4 +1,3 @@
-import 'package:tozher/features/interests/data/model/interest_model.dart';
 import 'package:tozher/features/posts/domain/entity/post.dart';
 
 class PostModel {
@@ -10,7 +9,7 @@ class PostModel {
   final int supportCount;
   final int shareCount;
   final DateTime createdAt;
-  final List<InterestModel> interests;
+  final String? interestId;
 
   PostModel({
     required this.id,
@@ -21,7 +20,7 @@ class PostModel {
     required this.supportCount,
     required this.shareCount,
     required this.createdAt,
-    required this.interests,
+    this.interestId,
   });
 
   Post toEntity() => Post(
@@ -33,23 +32,23 @@ class PostModel {
     supportCount: supportCount,
     shareCount: shareCount,
     createdAt: createdAt,
-    interestsNames: interests.map((interest) => interest.name).toList(),
+    interestName: interestId,
   );
 
   factory PostModel.fromMap(
     Map<String, dynamic> map,
-    List<InterestModel> interests,
+    String? interestId,
   ) {
     return PostModel(
       id: map['id'] as String,
       title: map['title'] as String,
-      photos: List<String>.from(map['photos'] as List<String>),
+      photos: List<String>.from(map['photos'] as List),
       likeCount: map['likeCount'] as int,
       commentCount: map['commentCount'] as int,
       supportCount: map['supportCount'] as int,
       shareCount: map['shareCount'] as int,
       createdAt: _parseDateTime(map['createdAt']),
-      interests: interests,
+      interestId: interestId,
     );
   }
 

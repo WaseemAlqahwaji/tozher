@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tozher/features/posts/domain/params/post_add_params.dart';
 
 class PostAddModel {
@@ -7,8 +8,8 @@ class PostAddModel {
   final int commentCount;
   final int supportCount;
   final int shareCount;
-  final List<String> interestsIds;
-  DateTime createdAt;
+  final String? interestId;
+  final DateTime createdAt;
 
   PostAddModel({
     required this.title,
@@ -17,18 +18,9 @@ class PostAddModel {
     this.commentCount = 0,
     this.supportCount = 0,
     this.shareCount = 0,
-    required this.interestsIds,
+    this.interestId,
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
-
-  factory PostAddModel.fromEntity(PostAddParams params) {
-    return PostAddModel(
-      title: params.title,
-      photos: params.photos,
-      likeCount: params.likeCount,
-      interestsIds: params.interests.map((interest) => interest.name).toList(),
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -38,8 +30,19 @@ class PostAddModel {
       'commentCount': commentCount,
       'supportCount': supportCount,
       'shareCount': shareCount,
-      'interestsIds': interestsIds,
-      'createdAt': createdAt.toIso8601String(),
+      'interestId': interestId,
+      'createdAt': Timestamp.fromDate(createdAt),
     };
+  }
+}
+
+extension PostAddParamsToModel on PostAddParams {
+  PostAddModel toModel() {
+    return PostAddModel(
+      title: title,
+      photos: photos,
+      likeCount: likeCount,
+      interestId: interest?.id,
+    );
   }
 }

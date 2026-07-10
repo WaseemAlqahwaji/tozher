@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tozher/features/core/data/source/local/hive_local_storge.dart';
 import 'package:tozher/features/core/helpers/bloc_observer.dart';
 import 'package:tozher/features/core/presentation/cubit/localization/localization_cubit.dart';
 import 'package:tozher/firebase_options.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  await HiveLocalStorge.openBox();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureInjection('dev');
   await FlutterLocalization.instance.ensureInitialized();

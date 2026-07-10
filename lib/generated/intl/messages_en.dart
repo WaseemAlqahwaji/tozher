@@ -26,12 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "achievementHint": m0,
     "addAchievement": MessageLookupByLibrary.simpleMessage("Add Achievement"),
+    "addPhotos": MessageLookupByLibrary.simpleMessage("Add Photos"),
     "age": MessageLookupByLibrary.simpleMessage("age"),
     "ageHint": MessageLookupByLibrary.simpleMessage("Enter your age"),
     "appName": MessageLookupByLibrary.simpleMessage("Tozher"),
     "appTagline": MessageLookupByLibrary.simpleMessage(
       "Collective goals, shared achievement.",
     ),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "completeYourProfile": MessageLookupByLibrary.simpleMessage(
       "Complete your profile",
@@ -93,6 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s go"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "male": MessageLookupByLibrary.simpleMessage("male"),
+    "mentionInterests": MessageLookupByLibrary.simpleMessage(
+      "MENTION INTERESTS",
+    ),
     "newGoal": MessageLookupByLibrary.simpleMessage("New Goal"),
     "newGoalSubtitle": MessageLookupByLibrary.simpleMessage(
       "Set your intentions and let the community cheer you on",
@@ -117,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseVerifyEmail": MessageLookupByLibrary.simpleMessage(
       "Please verify your email",
     ),
+    "post": MessageLookupByLibrary.simpleMessage("Post"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "publicGoal": MessageLookupByLibrary.simpleMessage("Public Goal"),
     "publicGoalDescription": MessageLookupByLibrary.simpleMessage(
@@ -154,5 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Verification link have been sent, please verify the email and login",
     ),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+    "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
+      "What\'s on your mind?",
+    ),
   };
 }

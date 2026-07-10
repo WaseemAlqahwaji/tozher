@@ -4,12 +4,12 @@ class PostAddParams {
   final String title;
   final List<String> photos;
   final int likeCount;
-  final List<Interest> interests;
+  final Interest? interest;
 
   PostAddParams({
     required this.title,
     required this.photos,
     required this.likeCount,
-    required this.interests,
+    this.interest,
   });
 }

@@ -219,6 +219,26 @@
   "@createGoal": {
     "description": "Label for the create goal submit button"
   },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "post": "Post",
+  "@post": {
+    "description": "Post button label for creating a post"
+  },
+  "whatsOnYourMind": "What's on your mind?",
+  "@whatsOnYourMind": {
+    "description": "Placeholder hint for post title input"
+  },
+  "addPhotos": "Add Photos",
+  "@addPhotos": {
+    "description": "Label for the add photos upload area"
+  },
+  "mentionInterests": "MENTION INTERESTS",
+  "@mentionInterests": {
+    "description": "Section title for mentioning interests in a post"
+  },
   "noAchievementsYet": "No achievements yet",
   "@noAchievementsYet": {
     "description": "Shown when a goal has no achievements loaded"

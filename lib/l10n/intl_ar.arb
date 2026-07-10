@@ -218,6 +218,26 @@
   "@createGoal": {
     "description": "Label for the create goal submit button"
   },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "Cancel button label"
+  },
+  "post": "نشر",
+  "@post": {
+    "description": "Post button label for creating a post"
+  },
+  "whatsOnYourMind": "ما الذي يدور في ذهنك؟",
+  "@whatsOnYourMind": {
+    "description": "Placeholder hint for post title input"
+  },
+  "addPhotos": "أضف صوراً",
+  "@addPhotos": {
+    "description": "Label for the add photos upload area"
+  },
+  "mentionInterests": "ذكر اهتمامات",
+  "@mentionInterests": {
+    "description": "Section title for mentioning interests in a post"
+  },
   "noAchievementsYet": "لا توجد إنجازات بعد",
   "@noAchievementsYet": {
     "description": "Shown when a goal has no achievements loaded"

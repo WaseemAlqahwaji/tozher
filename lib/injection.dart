@@ -1,6 +1,6 @@
 // import 'dart:developer' as developer;
 
-// import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 // import 'package:retrofit/retrofit.dart';
@@ -30,6 +30,14 @@ import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
 import 'package:tozher/features/goals/presentation/cubit/goal_toggle_achievement_cubit.dart';
 import 'package:tozher/features/goals/presentation/cubit/goal_update_cubit.dart';
 import 'package:tozher/features/goals/presentation/cubit/goal_update_visibility_cubit.dart';
+import 'package:tozher/features/image_upload/data/repo/image_upload_repo_impl.dart';
+import 'package:tozher/features/image_upload/data/source/image_upload_source.dart';
+import 'package:tozher/features/image_upload/domain/repo/image_upload_repo.dart';
+import 'package:tozher/features/image_upload/presentation/cubit/image_upload_cubit.dart';
+import 'package:tozher/features/posts/data/repo/post_repo_impl.dart';
+import 'package:tozher/features/posts/data/source/post_source.dart';
+import 'package:tozher/features/posts/domain/repo/post_repo.dart';
+import 'package:tozher/features/posts/presentation/cubit/post_add_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -107,6 +115,29 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<GoalToggleAchievementCubit>(
     () => GoalToggleAchievementCubit(goalRepo: getIt<GoalRepo>()),
+  );
+
+  // Posts
+  getIt.registerLazySingleton<PostSource>(
+    () => PostSource(FirebaseFirestore.instance),
+  );
+  getIt.registerLazySingleton<PostRepo>(
+    () => PostRepoImpl(source: getIt<PostSource>()),
+  );
+  getIt.registerFactory<PostAddCubit>(
+    () => PostAddCubit(postRepo: getIt<PostRepo>()),
+  );
+
+  // Image Upload
+  getIt.registerLazySingleton<Dio>(() => Dio());
+  getIt.registerLazySingleton<ImageUploadSource>(
+    () => ImageUploadSource(getIt<Dio>()),
+  );
+  getIt.registerLazySingleton<ImageUploadRepo>(
+    () => ImageUploadRepoImpl(getIt<ImageUploadSource>()),
+  );
+  getIt.registerFactory<ImageUploadCubit>(
+    () => ImageUploadCubit(repo: getIt<ImageUploadRepo>()),
   );
 }
 
