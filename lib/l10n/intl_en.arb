@@ -145,5 +145,78 @@
   "ageHint": "Enter your age",
   "genderHint": "Select your gender",
   "userNotFound" : "User not found",
-  "usernameHasBeenTakenChangeIt" : "Username has been taken, change it"
+  "usernameHasBeenTakenChangeIt" : "Username has been taken, change it",
+  "appName": "Tozher",
+  "@appName": {
+    "description": "Application name shown in app bars"
+  },
+  "newGoal": "New Goal",
+  "@newGoal": {
+    "description": "Title for the create goal page"
+  },
+  "newGoalSubtitle": "Set your intentions and let the community cheer you on",
+  "@newGoalSubtitle": {
+    "description": "Subtitle text on the create goal page"
+  },
+  "goalName": "Goal Name",
+  "@goalName": {
+    "description": "Label for goal name input field"
+  },
+  "goalNameHint": "Enter your goal name",
+  "@goalNameHint": {
+    "description": "Placeholder hint inside the goal name text field"
+  },
+  "goalDescription": "Goal Description",
+  "@goalDescription": {
+    "description": "Label for goal description input field"
+  },
+  "goalDescriptionHint": "Describe your goal in detail",
+  "@goalDescriptionHint": {
+    "description": "Placeholder hint inside the goal description text field"
+  },
+  "keyAchievements": "Key Achievements",
+  "@keyAchievements": {
+    "description": "Section title for key achievements"
+  },
+  "goalDate": "Goal Date",
+  "@goalDate": {
+    "description": "Label for goal date input field"
+  },
+  "goalDateHint": "Select your goal date",
+  "@goalDateHint": {
+    "description": "Placeholder hint inside the goal date text field"
+  },
+  "reminderDate": "Reminder Date",
+  "@reminderDate": {
+    "description": "Label for reminder date input field"
+  },
+  "reminderDateHint": "Select a reminder date",
+  "@reminderDateHint": {
+    "description": "Placeholder hint inside the reminder date text field"
+  },
+  "publicGoal": "Public Goal",
+  "@publicGoal": {
+    "description": "Label for the public goal toggle"
+  },
+  "publicGoalDescription": "Let others see and support your progress",
+  "@publicGoalDescription": {
+    "description": "Description text for the public goal toggle"
+  },
+  "achievementHint": "Achievement {number}",
+  "@achievementHint": {
+    "description": "Placeholder hint for achievement input fields",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "addAchievement": "Add Achievement",
+  "@addAchievement": {
+    "description": "Button label to add a new achievement field"
+  },
+  "createGoal": "Create Goal",
+  "@createGoal": {
+    "description": "Label for the create goal submit button"
+  }
 }

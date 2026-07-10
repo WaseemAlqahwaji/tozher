@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
 import 'package:tozher/features/core/constants/app_constants.dart';
 import 'package:tozher/features/core/presentation/widgets/reusable_bloc_builder.dart';
@@ -6,6 +7,7 @@ import 'package:tozher/features/goals/domain/entity/goal.dart';
 import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
 import 'package:tozher/features/goals/presentation/widgets/goal_list.dart';
 import 'package:tozher/injection.dart';
+import 'package:tozher/routing/route_paths.dart';
 
 class GoalsPage extends StatefulWidget {
   const GoalsPage({super.key});
@@ -45,7 +47,12 @@ class GoalsPageState extends State<GoalsPage> {
                       ],
                     ),
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text("+ Add Goal")),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.push(RoutePaths.addGoal, extra: getGoalsCubit);
+                    },
+                    child: Text("+ Add Goal"),
+                  ),
                 ],
               ),
               ReusableBlocBuilder<GoalGetCubit, List<Goal>>(

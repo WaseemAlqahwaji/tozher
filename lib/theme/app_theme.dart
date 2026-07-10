@@ -188,7 +188,6 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
         ),
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       ),
 
       // -- Input Decoration ---------------------------------------------------
@@ -479,7 +478,6 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
         ),
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       ),
 
       inputDecorationTheme: _darkInputDecoration,

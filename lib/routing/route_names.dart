@@ -8,5 +8,6 @@ class RouteNames {
   static const String goals = 'goals';
   static const String profile = 'profile';
   static const String completeProfile = 'completeProfile';
+  static const String addGoal = 'addGoal';
   
 }

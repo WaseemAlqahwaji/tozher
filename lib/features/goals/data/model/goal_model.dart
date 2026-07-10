@@ -49,17 +49,19 @@ class GoalModel {
     status: entity.status,
     createdAt: entity.createdAt,
     isPrivate: entity.isPrivate,
-    achievements: entity.achievements.map((a) => AchievementModel.fromEntity(a)).toList(),
+    achievements: entity.achievements
+        .map((a) => AchievementModel.fromEntity(a))
+        .toList(),
   );
 
-  factory GoalModel.fromMap(Map<String, dynamic> map) {
+  factory GoalModel.fromMap(Map<String, dynamic> map, String documentId) {
     return GoalModel(
-      id: map['id'] as String,
+      id: documentId,
       userId: map['user_id'] as String,
       name: map['name'] as String,
       description: map['description'] as String? ?? '',
-      date: _parseDateTime(map['date']),
-      reminderDate: _parseDateTime(map['reminder_date']),
+      date: map['date'],
+      reminderDate: map['reminder_date'],
       status: map['status'] as String? ?? 'private',
       createdAt: map['created_at'],
       isPrivate: map['is_private'],

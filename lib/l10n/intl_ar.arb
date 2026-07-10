@@ -144,5 +144,78 @@
   "ageHint": "أدخل عمرك",
   "genderHint": "اختر جنسك",
     "userNotFound" : "مستخدم غير موجود",
-  "usernameHasBeenTakenChangeIt" : "اسم المستخدم مستخدم بالفعل، يرجى استخدام اسم اخر"
+  "usernameHasBeenTakenChangeIt" : "اسم المستخدم مستخدم بالفعل، يرجى استخدام اسم اخر",
+  "appName": "توذر",
+  "@appName": {
+    "description": "Application name shown in app bars"
+  },
+  "newGoal": "هدف جديد",
+  "@newGoal": {
+    "description": "Title for the create goal page"
+  },
+  "newGoalSubtitle": "حدد نواياك ودع المجتمع يشجعك",
+  "@newGoalSubtitle": {
+    "description": "Subtitle text on the create goal page"
+  },
+  "goalName": "اسم الهدف",
+  "@goalName": {
+    "description": "Label for goal name input field"
+  },
+  "goalNameHint": "أدخل اسم هدفك",
+  "@goalNameHint": {
+    "description": "Placeholder hint inside the goal name text field"
+  },
+  "goalDescription": "وصف الهدف",
+  "@goalDescription": {
+    "description": "Label for goal description input field"
+  },
+  "goalDescriptionHint": "صف هدفك بالتفصيل",
+  "@goalDescriptionHint": {
+    "description": "Placeholder hint inside the goal description text field"
+  },
+  "keyAchievements": "الإنجازات الرئيسية",
+  "@keyAchievements": {
+    "description": "Section title for key achievements"
+  },
+  "goalDate": "تاريخ الهدف",
+  "@goalDate": {
+    "description": "Label for goal date input field"
+  },
+  "goalDateHint": "اختر تاريخ الهدف",
+  "@goalDateHint": {
+    "description": "Placeholder hint inside the goal date text field"
+  },
+  "reminderDate": "تاريخ التذكير",
+  "@reminderDate": {
+    "description": "Label for reminder date input field"
+  },
+  "reminderDateHint": "اختر تاريخ التذكير",
+  "@reminderDateHint": {
+    "description": "Placeholder hint inside the reminder date text field"
+  },
+  "publicGoal": "هدف عام",
+  "@publicGoal": {
+    "description": "Label for the public goal toggle"
+  },
+  "publicGoalDescription": "دع الآخرين يروا ويدعموا تقدمك",
+  "@publicGoalDescription": {
+    "description": "Description text for the public goal toggle"
+  },
+  "achievementHint": "إنجاز {number}",
+  "@achievementHint": {
+    "description": "Placeholder hint for achievement input fields",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "addAchievement": "أضف إنجازاً",
+  "@addAchievement": {
+    "description": "Button label to add a new achievement field"
+  },
+  "createGoal": "إنشاء هدف",
+  "@createGoal": {
+    "description": "Label for the create goal submit button"
+  }
 }

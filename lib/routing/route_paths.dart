@@ -8,4 +8,5 @@ class RoutePaths {
   static const String search = '/search';
   static const String goals = '/goals';
   static const String profile = '/profile';
+  static const String addGoal = '/addGoal';
 }

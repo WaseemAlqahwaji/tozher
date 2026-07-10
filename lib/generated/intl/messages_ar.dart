@@ -20,10 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(number) => "إنجاز ${number}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "achievementHint": m0,
+    "addAchievement": MessageLookupByLibrary.simpleMessage("أضف إنجازاً"),
     "age": MessageLookupByLibrary.simpleMessage("العمر"),
     "ageHint": MessageLookupByLibrary.simpleMessage("أدخل عمرك"),
+    "appName": MessageLookupByLibrary.simpleMessage("توذر"),
     "appTagline": MessageLookupByLibrary.simpleMessage(
       "أهداف جماعية، إنجاز مشترك.",
     ),
@@ -32,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تمت العملية بنجاح",
     ),
     "confirmAccount": MessageLookupByLibrary.simpleMessage("تأكيد الحساب"),
+    "createGoal": MessageLookupByLibrary.simpleMessage("إنشاء هدف"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailHint": MessageLookupByLibrary.simpleMessage("Hello@tozher.com"),
@@ -59,6 +65,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
     "genderHint": MessageLookupByLibrary.simpleMessage("اختر جنسك"),
+    "goalDate": MessageLookupByLibrary.simpleMessage("تاريخ الهدف"),
+    "goalDateHint": MessageLookupByLibrary.simpleMessage("اختر تاريخ الهدف"),
+    "goalDescription": MessageLookupByLibrary.simpleMessage("وصف الهدف"),
+    "goalDescriptionHint": MessageLookupByLibrary.simpleMessage(
+      "صف هدفك بالتفصيل",
+    ),
+    "goalName": MessageLookupByLibrary.simpleMessage("اسم الهدف"),
+    "goalNameHint": MessageLookupByLibrary.simpleMessage("أدخل اسم هدفك"),
     "goals": MessageLookupByLibrary.simpleMessage("الأهداف"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب؟"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
@@ -66,9 +80,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "joinCommunity": MessageLookupByLibrary.simpleMessage(
       "انضم إلى مجتمع مصمم\nللنمو والاحتفال المشترك.",
     ),
+    "keyAchievements": MessageLookupByLibrary.simpleMessage(
+      "الإنجازات الرئيسية",
+    ),
     "letsGo": MessageLookupByLibrary.simpleMessage("هيا بنا"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+    "newGoal": MessageLookupByLibrary.simpleMessage("هدف جديد"),
+    "newGoalSubtitle": MessageLookupByLibrary.simpleMessage(
+      "حدد نواياك ودع المجتمع يشجعك",
+    ),
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -87,7 +108,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "الرجاء تأكيد بريدك الإلكتروني",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "publicGoal": MessageLookupByLibrary.simpleMessage("هدف عام"),
+    "publicGoalDescription": MessageLookupByLibrary.simpleMessage(
+      "دع الآخرين يروا ويدعموا تقدمك",
+    ),
     "register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "reminderDate": MessageLookupByLibrary.simpleMessage("تاريخ التذكير"),
+    "reminderDateHint": MessageLookupByLibrary.simpleMessage(
+      "اختر تاريخ التذكير",
+    ),
     "resetPassword": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
     ),

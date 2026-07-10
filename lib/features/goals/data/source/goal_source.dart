@@ -15,14 +15,31 @@ class GoalSource {
         .collection(collectionName)
         .where('user_id', isEqualTo: userId)
         .get();
-    return snapshot.docs.map((doc) => GoalModel.fromMap(doc.data())).toList();
+    return snapshot.docs
+        .map((doc) => GoalModel.fromMap(doc.data(), doc.id))
+        .toList();
   }
 
   Future<void> addGoal(GoalAddModel goalAddModel) async {
-    await _firestore.collection(collectionName).add(goalAddModel.toMap());
+    final goalDocRef = await _firestore
+        .collection(collectionName)
+        .add(goalAddModel.toMap());
+
+    final goalId = goalDocRef.id;
+
+    for (final achievementName in goalAddModel.achievementsNames) {
+      final achievement = AchievementModel.fromName(
+        goalId: goalId,
+        title: achievementName,
+      );
+      await addAchievement(goalId, achievement);
+    }
   }
 
-  Future<void> updateGoal(String goalId, GoalUpdateModel goalUpdateModel) async {
+  Future<void> updateGoal(
+    String goalId,
+    GoalUpdateModel goalUpdateModel,
+  ) async {
     await _firestore
         .collection(collectionName)
         .doc(goalId)
@@ -50,7 +67,10 @@ class GoalSource {
         .toList();
   }
 
-  Future<void> addAchievement(String goalId, AchievementModel achievement) async {
+  Future<void> addAchievement(
+    String goalId,
+    AchievementModel achievement,
+  ) async {
     await _firestore
         .collection(collectionName)
         .doc(goalId)

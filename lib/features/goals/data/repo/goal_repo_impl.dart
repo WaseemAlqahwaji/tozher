@@ -28,7 +28,8 @@ class GoalRepoImpl extends GoalRepo {
   @override
   Future<Either<Failure, void>> addGoal(GoalAddParams params) async {
     return ErrorConverter.safeCall<void>(() async {
-      await goalSource.addGoal(params.toModel());
+      final model = params.toModel();
+      await goalSource.addGoal(model);
     });
   }
 

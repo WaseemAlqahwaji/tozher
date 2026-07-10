@@ -20,10 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(number) => "Achievement ${number}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "achievementHint": m0,
+    "addAchievement": MessageLookupByLibrary.simpleMessage("Add Achievement"),
     "age": MessageLookupByLibrary.simpleMessage("age"),
     "ageHint": MessageLookupByLibrary.simpleMessage("Enter your age"),
+    "appName": MessageLookupByLibrary.simpleMessage("Tozher"),
     "appTagline": MessageLookupByLibrary.simpleMessage(
       "Collective goals, shared achievement.",
     ),
@@ -35,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "completed successfully",
     ),
     "confirmAccount": MessageLookupByLibrary.simpleMessage("Confirm Account"),
+    "createGoal": MessageLookupByLibrary.simpleMessage("Create Goal"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t you have an account?",
     ),
@@ -64,6 +70,18 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "gender": MessageLookupByLibrary.simpleMessage("gender"),
     "genderHint": MessageLookupByLibrary.simpleMessage("Select your gender"),
+    "goalDate": MessageLookupByLibrary.simpleMessage("Goal Date"),
+    "goalDateHint": MessageLookupByLibrary.simpleMessage(
+      "Select your goal date",
+    ),
+    "goalDescription": MessageLookupByLibrary.simpleMessage("Goal Description"),
+    "goalDescriptionHint": MessageLookupByLibrary.simpleMessage(
+      "Describe your goal in detail",
+    ),
+    "goalName": MessageLookupByLibrary.simpleMessage("Goal Name"),
+    "goalNameHint": MessageLookupByLibrary.simpleMessage(
+      "Enter your goal name",
+    ),
     "goals": MessageLookupByLibrary.simpleMessage("Goals"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("You have an account?"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -71,9 +89,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "joinCommunity": MessageLookupByLibrary.simpleMessage(
       "Join a community designed for\n shared growth and celebration.",
     ),
+    "keyAchievements": MessageLookupByLibrary.simpleMessage("Key Achievements"),
     "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s go"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "male": MessageLookupByLibrary.simpleMessage("male"),
+    "newGoal": MessageLookupByLibrary.simpleMessage("New Goal"),
+    "newGoalSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Set your intentions and let the community cheer you on",
+    ),
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -92,7 +115,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please verify your email",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "publicGoal": MessageLookupByLibrary.simpleMessage("Public Goal"),
+    "publicGoalDescription": MessageLookupByLibrary.simpleMessage(
+      "Let others see and support your progress",
+    ),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
+    "reminderDate": MessageLookupByLibrary.simpleMessage("Reminder Date"),
+    "reminderDateHint": MessageLookupByLibrary.simpleMessage(
+      "Select a reminder date",
+    ),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "resetPasswordEmailHaveBeenSendedSuccessfully":
         MessageLookupByLibrary.simpleMessage(

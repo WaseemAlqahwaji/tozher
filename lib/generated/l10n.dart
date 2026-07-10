@@ -556,6 +556,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Tozher`
+  String get appName {
+    return Intl.message(
+      'Tozher',
+      name: 'appName',
+      desc: 'Application name shown in app bars',
+      args: [],
+    );
+  }
+
+  /// `New Goal`
+  String get newGoal {
+    return Intl.message(
+      'New Goal',
+      name: 'newGoal',
+      desc: 'Title for the create goal page',
+      args: [],
+    );
+  }
+
+  /// `Set your intentions and let the community cheer you on`
+  String get newGoalSubtitle {
+    return Intl.message(
+      'Set your intentions and let the community cheer you on',
+      name: 'newGoalSubtitle',
+      desc: 'Subtitle text on the create goal page',
+      args: [],
+    );
+  }
+
+  /// `Goal Name`
+  String get goalName {
+    return Intl.message(
+      'Goal Name',
+      name: 'goalName',
+      desc: 'Label for goal name input field',
+      args: [],
+    );
+  }
+
+  /// `Enter your goal name`
+  String get goalNameHint {
+    return Intl.message(
+      'Enter your goal name',
+      name: 'goalNameHint',
+      desc: 'Placeholder hint inside the goal name text field',
+      args: [],
+    );
+  }
+
+  /// `Goal Description`
+  String get goalDescription {
+    return Intl.message(
+      'Goal Description',
+      name: 'goalDescription',
+      desc: 'Label for goal description input field',
+      args: [],
+    );
+  }
+
+  /// `Describe your goal in detail`
+  String get goalDescriptionHint {
+    return Intl.message(
+      'Describe your goal in detail',
+      name: 'goalDescriptionHint',
+      desc: 'Placeholder hint inside the goal description text field',
+      args: [],
+    );
+  }
+
+  /// `Key Achievements`
+  String get keyAchievements {
+    return Intl.message(
+      'Key Achievements',
+      name: 'keyAchievements',
+      desc: 'Section title for key achievements',
+      args: [],
+    );
+  }
+
+  /// `Goal Date`
+  String get goalDate {
+    return Intl.message(
+      'Goal Date',
+      name: 'goalDate',
+      desc: 'Label for goal date input field',
+      args: [],
+    );
+  }
+
+  /// `Select your goal date`
+  String get goalDateHint {
+    return Intl.message(
+      'Select your goal date',
+      name: 'goalDateHint',
+      desc: 'Placeholder hint inside the goal date text field',
+      args: [],
+    );
+  }
+
+  /// `Reminder Date`
+  String get reminderDate {
+    return Intl.message(
+      'Reminder Date',
+      name: 'reminderDate',
+      desc: 'Label for reminder date input field',
+      args: [],
+    );
+  }
+
+  /// `Select a reminder date`
+  String get reminderDateHint {
+    return Intl.message(
+      'Select a reminder date',
+      name: 'reminderDateHint',
+      desc: 'Placeholder hint inside the reminder date text field',
+      args: [],
+    );
+  }
+
+  /// `Public Goal`
+  String get publicGoal {
+    return Intl.message(
+      'Public Goal',
+      name: 'publicGoal',
+      desc: 'Label for the public goal toggle',
+      args: [],
+    );
+  }
+
+  /// `Let others see and support your progress`
+  String get publicGoalDescription {
+    return Intl.message(
+      'Let others see and support your progress',
+      name: 'publicGoalDescription',
+      desc: 'Description text for the public goal toggle',
+      args: [],
+    );
+  }
+
+  /// `Achievement {number}`
+  String achievementHint(int number) {
+    return Intl.message(
+      'Achievement $number',
+      name: 'achievementHint',
+      desc: 'Placeholder hint for achievement input fields',
+      args: [number],
+    );
+  }
+
+  /// `Add Achievement`
+  String get addAchievement {
+    return Intl.message(
+      'Add Achievement',
+      name: 'addAchievement',
+      desc: 'Button label to add a new achievement field',
+      args: [],
+    );
+  }
+
+  /// `Create Goal`
+  String get createGoal {
+    return Intl.message(
+      'Create Goal',
+      name: 'createGoal',
+      desc: 'Label for the create goal submit button',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

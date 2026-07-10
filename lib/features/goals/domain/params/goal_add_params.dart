@@ -1,3 +1,5 @@
+import 'package:tozher/features/goals/domain/params/achievement_add_params.dart';
+
 class GoalAddParams {
   final String userId;
   final String name;
@@ -6,6 +8,7 @@ class GoalAddParams {
   final DateTime reminderDate;
   final String status;
   final bool isPrivate;
+  final AchievementAddParams achievementAddParams;
 
   GoalAddParams({
     required this.userId,
@@ -15,5 +18,6 @@ class GoalAddParams {
     required this.reminderDate,
     required this.status,
     required this.isPrivate,
+    required this.achievementAddParams,
   });
 }

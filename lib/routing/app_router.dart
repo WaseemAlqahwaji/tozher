@@ -4,6 +4,8 @@ import 'package:tozher/features/auth/presentation/pages/auth_login_page.dart';
 import 'package:tozher/features/auth/presentation/pages/auth_register_page.dart';
 import 'package:tozher/features/auth/presentation/pages/auth_send_password_reset_email_page.dart';
 import 'package:tozher/features/core/presentation/page/no_route_found_page.dart';
+import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
+import 'package:tozher/features/goals/presentation/pages/goal_add_page.dart';
 import 'package:tozher/features/home/presentation/page/home_layout.dart';
 import 'route_paths.dart';
 import 'route_names.dart';
@@ -41,6 +43,14 @@ class AppRouter {
           builder: (_, state) {
             final userUid = state.extra as String;
             return AuthCompleteProfilePage(userUid: userUid);
+          },
+        ),
+        GoRoute(
+          path: RoutePaths.addGoal,
+          name: RouteNames.addGoal,
+          builder: (_, state) {
+            final cubit = state.extra as GoalGetCubit;
+            return GoalAddPage(goalGetCubit: cubit);
           },
         ),
       ],
