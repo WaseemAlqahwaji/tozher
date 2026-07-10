@@ -5,93 +5,120 @@ import 'package:tozher/features/goals/data/model/goal_model.dart';
 import 'package:tozher/features/goals/data/model/goal_update_model.dart';
 
 class GoalSource {
-  final String collectionName = 'goals';
-  final String achievementsCollectionName = 'achievements';
+  static const String _usersCollection = 'users';
+  static const String _goalsCollection = 'goals';
+  static const String _achievementsCollection = 'achievements';
   final FirebaseFirestore _firestore;
   GoalSource(this._firestore);
 
+  DocumentReference _goalDoc(String userId, String goalId) => _firestore
+      .collection(_usersCollection)
+      .doc(userId)
+      .collection(_goalsCollection)
+      .doc(goalId);
+
+  CollectionReference _goalsRef(String userId) => _firestore
+      .collection(_usersCollection)
+      .doc(userId)
+      .collection(_goalsCollection);
+
+  CollectionReference _achievementsRef(String userId, String goalId) =>
+      _goalDoc(userId, goalId).collection(_achievementsCollection);
+
   Future<List<GoalModel>> getGoals(String userId) async {
-    final snapshot = await _firestore
-        .collection(collectionName)
-        .where('user_id', isEqualTo: userId)
-        .get();
+    final snapshot = await _goalsRef(userId).get();
 
-        //get 
+    final goalModels = <GoalModel>[];
+    for (final doc in snapshot.docs) {
+      final achievements = await getAchievements(userId, doc.id);
+      goalModels.add(
+        GoalModel.fromMap(
+          doc.data() as Map<String, dynamic>,
+          doc.id,
+          achievements,
+        ),
+      );
+    }
 
-    
-    return snapshot.docs
-        .map((doc) => GoalModel.fromMap(doc.data(), doc.id))
-        .toList();
+    return goalModels;
   }
 
   Future<void> addGoal(GoalAddModel goalAddModel) async {
-    final goalDocRef = await _firestore
-        .collection(collectionName)
-        .add(goalAddModel.toMap());
+    final batch = _firestore.batch();
+    final userId = goalAddModel.userId;
+
+    // Pre-generate goal document reference
+    final goalDocRef = _goalsRef(userId).doc();
+    batch.set(goalDocRef, goalAddModel.toMap());
 
     final goalId = goalDocRef.id;
 
+    // Add all achievements in the same batch
     for (final achievementName in goalAddModel.achievementsNames) {
+      final achievementRef = _achievementsRef(userId, goalId).doc();
       final achievement = AchievementModel.fromName(
         goalId: goalId,
         title: achievementName,
       );
-      await addAchievement(goalId, achievement);
+      batch.set(achievementRef, achievement.toMap());
     }
+
+    // Single atomic commit — all writes succeed or fail together
+    await batch.commit();
   }
 
   Future<void> updateGoal(
+    String userId,
     String goalId,
     GoalUpdateModel goalUpdateModel,
   ) async {
-    await _firestore
-        .collection(collectionName)
-        .doc(goalId)
-        .update(goalUpdateModel.toMap());
+    await _goalDoc(userId, goalId).update(goalUpdateModel.toMap());
   }
 
-  Future<void> deleteGoal(String goalId) async {
-    await _firestore.collection(collectionName).doc(goalId).delete();
+  Future<void> deleteGoal(String userId, String goalId) async {
+    await _goalDoc(userId, goalId).delete();
   }
 
-  Future<void> updateGoalVisibility(String goalId, bool isPrivate) async {
-    await _firestore.collection(collectionName).doc(goalId).update({
-      'is_private': isPrivate,
-    });
+  Future<void> updateGoalVisibility(
+    String userId,
+    String goalId,
+    bool isPrivate,
+  ) async {
+    await _goalDoc(userId, goalId).update({'is_private': isPrivate});
   }
 
-  Future<List<AchievementModel>> getAchievements(String goalId) async {
-    final snapshot = await _firestore
-        .collection(collectionName)
-        .doc(goalId)
-        .collection(achievementsCollectionName)
-        .get();
+  Future<List<AchievementModel>> getAchievements(
+    String userId,
+    String goalId,
+  ) async {
+    final snapshot = await _achievementsRef(userId, goalId).get();
     return snapshot.docs
-        .map((doc) => AchievementModel.fromMap(doc.data(), doc.id))
+        .map(
+          (doc) => AchievementModel.fromMap(
+            doc.data() as Map<String, dynamic>,
+            doc.id,
+          ),
+        )
         .toList();
   }
 
   Future<void> addAchievement(
+    String userId,
     String goalId,
     AchievementModel achievement,
   ) async {
-    await _firestore
-        .collection(collectionName)
-        .doc(goalId)
-        .collection(achievementsCollectionName)
-        .add(achievement.toMap());
+    await _achievementsRef(userId, goalId).add(achievement.toMap());
   }
 
   Future<void> toggleAchievement(
+    String userId,
     String goalId,
     String achievementId,
     bool isDone,
   ) async {
-    await _firestore
-        .collection(collectionName)
-        .doc(goalId)
-        .collection(achievementsCollectionName)
-        .doc(achievementId)
-        .update({'is_done': isDone});
+    await _achievementsRef(
+      userId,
+      goalId,
+    ).doc(achievementId).update({'is_done': isDone});
   }
 }

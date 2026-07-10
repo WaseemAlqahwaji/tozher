@@ -1,4 +1,5 @@
 class GoalUpdateParams {
+  final String userId;
   final String id;
   final String name;
   final String description;
@@ -8,6 +9,7 @@ class GoalUpdateParams {
   final bool isPrivate;
 
   GoalUpdateParams({
+    required this.userId,
     required this.id,
     required this.name,
     required this.description,

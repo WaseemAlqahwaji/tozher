@@ -37,7 +37,10 @@ class _GoalItemState extends State<GoalItem> {
   Future<void> _loadAchievements() async {
     setState(() => _isLoadingAchievements = true);
     final source = getIt<GoalSource>();
-    final result = await source.getAchievements(widget.goal.id);
+    final result = await source.getAchievements(
+      widget.goal.userId,
+      widget.goal.id,
+    );
     setState(() {
       _achievements = result;
       _isLoadingAchievements = false;
@@ -54,6 +57,7 @@ class _GoalItemState extends State<GoalItem> {
     final cubit = getIt<GoalUpdateVisibilityCubit>();
     cubit.updateGoalVisibility(
       UpdateGoalVisibilityParams(
+        userId: widget.goal.userId,
         goalId: widget.goal.id,
         isPrivate: newIsPrivate,
       ),
@@ -86,6 +90,7 @@ class _GoalItemState extends State<GoalItem> {
 
     cubit.toggleAchievement(
       ToggleAchievementParams(
+        userId: widget.goal.userId,
         goalId: widget.goal.id,
         achievementId: achievement.id,
         isDone: newIsDone,

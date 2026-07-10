@@ -36,14 +36,14 @@ class GoalRepoImpl extends GoalRepo {
   @override
   Future<Either<Failure, void>> updateGoal(GoalUpdateParams params) async {
     return ErrorConverter.safeCall<void>(() async {
-      await goalSource.updateGoal(params.id, params.toModel());
+      await goalSource.updateGoal(params.userId, params.id, params.toModel());
     });
   }
 
   @override
   Future<Either<Failure, void>> deleteGoal(GoalDeleteParams params) async {
     return ErrorConverter.safeCall<void>(() async {
-      await goalSource.deleteGoal(params.goalId);
+      await goalSource.deleteGoal(params.userId, params.goalId);
     });
   }
 
@@ -52,7 +52,11 @@ class GoalRepoImpl extends GoalRepo {
     UpdateGoalVisibilityParams params,
   ) async {
     return ErrorConverter.safeCall<void>(() async {
-      await goalSource.updateGoalVisibility(params.goalId, params.isPrivate);
+      await goalSource.updateGoalVisibility(
+        params.userId,
+        params.goalId,
+        params.isPrivate,
+      );
     });
   }
 
@@ -62,6 +66,7 @@ class GoalRepoImpl extends GoalRepo {
   ) async {
     return ErrorConverter.safeCall<void>(() async {
       await goalSource.toggleAchievement(
+        params.userId,
         params.goalId,
         params.achievementId,
         params.isDone,

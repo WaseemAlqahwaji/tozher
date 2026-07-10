@@ -39,19 +39,12 @@ class GoalModel {
     isPrivate: isPrivate,
   );
 
-  factory GoalModel.fromEntity(Goal entity) => GoalModel(
-    id: entity.id,
-    userId: entity.userId,
-    name: entity.name,
-    description: entity.description,
-    date: entity.date,
-    reminderDate: entity.reminderDate,
-    status: entity.status,
-    createdAt: entity.createdAt,
-    isPrivate: entity.isPrivate,
-  );
 
-  factory GoalModel.fromMap(Map<String, dynamic> map, String documentId) {
+  factory GoalModel.fromMap(
+    Map<String, dynamic> map,
+    String documentId,
+    List<AchievementModel> achievements,
+  ) {
     return GoalModel(
       id: documentId,
       userId: map['user_id'] as String,
@@ -62,24 +55,7 @@ class GoalModel {
       status: map['status'] as String? ?? 'private',
       createdAt: map['created_at'],
       isPrivate: map['is_private'],
+      achievements: achievements,
     );
   }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'user_id': userId,
-      'name': name,
-      'description': description,
-      'date': date,
-      'reminder_date': reminderDate,
-      'status': status,
-      'created_at': createdAt,
-      'is_private': isPrivate,
-    };
-  }
-}
-
-extension GoalEntityToModel on Goal {
-  GoalModel toModel() => GoalModel.fromEntity(this);
 }
