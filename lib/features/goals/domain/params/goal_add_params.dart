@@ -9,6 +9,7 @@ class GoalAddParams {
   final String status;
   final bool isPrivate;
   final AchievementAddParams achievementAddParams;
+  final DateTime createdAt;
 
   GoalAddParams({
     required this.userId,
@@ -19,5 +20,6 @@ class GoalAddParams {
     required this.status,
     required this.isPrivate,
     required this.achievementAddParams,
+    required this.createdAt,
   });
 }

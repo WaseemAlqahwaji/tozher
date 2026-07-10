@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
 import 'package:tozher/features/core/constants/app_constants.dart';
@@ -55,6 +57,7 @@ class GoalsPageState extends State<GoalsPage> {
                   ),
                 ],
               ),
+              Gap(16.h),
               ReusableBlocBuilder<GoalGetCubit, List<Goal>>(
                 onRetry: () {
                   getGoalsCubit.getGoals(
@@ -63,7 +66,9 @@ class GoalsPageState extends State<GoalsPage> {
                 },
                 cubit: getGoalsCubit,
                 builder: (context, state) {
-                  return GoalList(goals: state.item!);
+                  return GoalList(
+                    goals: state.item!,
+                  );
                 },
               ),
             ],

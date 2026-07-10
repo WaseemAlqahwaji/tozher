@@ -9,6 +9,7 @@ class GoalAddModel {
   final String status;
   final bool isPrivate;
   final List<String> achievementsNames;
+  final DateTime createdAt;
 
   GoalAddModel({
     required this.userId,
@@ -19,6 +20,7 @@ class GoalAddModel {
     required this.status,
     required this.isPrivate,
     required this.achievementsNames,
+    required this.createdAt,
   });
 }
 
@@ -32,6 +34,7 @@ extension GoalAddModelExtension on GoalAddModel {
       'reminder_date': reminderDate,
       'status': status,
       'is_private': isPrivate,
+      'created_at': createdAt,
     };
   }
 }
@@ -47,6 +50,7 @@ extension GoalAddParamsExtension on GoalAddParams {
       status: status,
       isPrivate: isPrivate,
       achievementsNames: achievementAddParams.names,
+      createdAt: createdAt
     );
   }
 }

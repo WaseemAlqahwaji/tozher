@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tozher/features/goals/data/model/achievement_model.dart';
 import 'package:tozher/features/goals/domain/entity/goal.dart';
 
@@ -6,9 +7,9 @@ class GoalModel {
   final String userId;
   final String name;
   final String description;
-  final DateTime date;
-  final DateTime reminderDate;
-  final DateTime createdAt;
+  final Timestamp date;
+  final Timestamp reminderDate;
+  final Timestamp createdAt;
   final String status;
   final bool isPrivate;
   final List<AchievementModel> achievements;
@@ -36,7 +37,6 @@ class GoalModel {
     status: status,
     createdAt: createdAt,
     isPrivate: isPrivate,
-    achievements: achievements.map((a) => a.toEntity()).toList(),
   );
 
   factory GoalModel.fromEntity(Goal entity) => GoalModel(
@@ -49,9 +49,6 @@ class GoalModel {
     status: entity.status,
     createdAt: entity.createdAt,
     isPrivate: entity.isPrivate,
-    achievements: entity.achievements
-        .map((a) => AchievementModel.fromEntity(a))
-        .toList(),
   );
 
   factory GoalModel.fromMap(Map<String, dynamic> map, String documentId) {
@@ -80,11 +77,6 @@ class GoalModel {
       'created_at': createdAt,
       'is_private': isPrivate,
     };
-  }
-
-  static DateTime _parseDateTime(dynamic value) {
-    if (value is DateTime) return value;
-    return DateTime.parse(value as String);
   }
 }
 

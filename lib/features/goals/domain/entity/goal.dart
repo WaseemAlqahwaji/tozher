@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tozher/features/goals/domain/entity/achievement.dart';
 
 class Goal {
@@ -5,12 +6,11 @@ class Goal {
   final String userId;
   final String name;
   final String description;
-  final DateTime date;
-  final DateTime reminderDate;
+  final Timestamp date;
+  final Timestamp reminderDate;
   final String status;
-  final DateTime createdAt;
+  final Timestamp createdAt;
   final bool isPrivate;
-  final List<Achievement> achievements;
 
   const Goal({
     required this.id,
@@ -22,7 +22,6 @@ class Goal {
     required this.status,
     required this.createdAt,
     required this.isPrivate,
-    this.achievements = const [],
   });
 
   Goal copyWith({
@@ -30,11 +29,10 @@ class Goal {
     String? userId,
     String? name,
     String? description,
-    DateTime? date,
-    DateTime? reminderDate,
+    Timestamp? date,
+    Timestamp? reminderDate,
     String? status,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    Timestamp? createdAt,
     bool? isPrivate,
     List<Achievement>? achievements,
   }) {
@@ -48,7 +46,6 @@ class Goal {
       status: status ?? this.status,
       createdAt: createdAt ?? this.createdAt,
       isPrivate: isPrivate ?? this.isPrivate,
-      achievements: achievements ?? this.achievements,
     );
   }
 }

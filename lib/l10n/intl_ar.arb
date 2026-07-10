@@ -217,5 +217,9 @@
   "createGoal": "إنشاء هدف",
   "@createGoal": {
     "description": "Label for the create goal submit button"
+  },
+  "noAchievementsYet": "لا توجد إنجازات بعد",
+  "@noAchievementsYet": {
+    "description": "Shown when a goal has no achievements loaded"
   }
 }

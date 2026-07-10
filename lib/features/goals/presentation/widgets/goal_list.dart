@@ -18,7 +18,8 @@ class _GoalListState extends State<GoalList> {
     return ListView.separated(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) => GoalItem(goal: widget.goals[index]),
+      itemBuilder: (context, index) =>
+          GoalItem( goal: widget.goals[index]),
       separatorBuilder: (context, index) => Gap(16.h),
       itemCount: widget.goals.length,
     );

@@ -355,6 +355,7 @@ class GoalAddPageState extends State<GoalAddPage> {
                                     .map((e) => e.text)
                                     .toList(),
                               ),
+                              createdAt: DateTime.now(),
                             ),
                           );
                         }

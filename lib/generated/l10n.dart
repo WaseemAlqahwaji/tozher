@@ -726,6 +726,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No achievements yet`
+  String get noAchievementsYet {
+    return Intl.message(
+      'No achievements yet',
+      name: 'noAchievementsYet',
+      desc: 'Shown when a goal has no achievements loaded',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

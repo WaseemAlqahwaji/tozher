@@ -98,6 +98,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Set your intentions and let the community cheer you on",
     ),
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+    "noAchievementsYet": MessageLookupByLibrary.simpleMessage(
+      "No achievements yet",
+    ),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("********"),

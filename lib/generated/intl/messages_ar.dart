@@ -91,6 +91,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدد نواياك ودع المجتمع يشجعك",
     ),
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+    "noAchievementsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إنجازات بعد",
+    ),
     "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
