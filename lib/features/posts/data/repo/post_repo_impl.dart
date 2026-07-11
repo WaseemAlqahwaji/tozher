@@ -4,6 +4,7 @@ import 'package:tozher/features/core/error/error_converter.dart';
 import 'package:tozher/features/posts/data/model/post_add_model.dart';
 import 'package:tozher/features/posts/data/source/post_source.dart';
 import 'package:tozher/features/posts/domain/entity/post.dart';
+import 'package:tozher/features/posts/domain/entity/post_comment.dart';
 import 'package:tozher/features/posts/domain/params/post_add_params.dart';
 import 'package:tozher/features/posts/domain/params/post_comment_add_params.dart';
 import 'package:tozher/features/posts/domain/params/post_like_params.dart';
@@ -33,6 +34,14 @@ class PostRepoImpl extends PostRepo {
   }
 
   @override
+  Future<Either<Failure, List<Post>>> getPostsByUserId(String userId) async {
+    return ErrorConverter.safeCall<List<Post>>(() async {
+      final models = await source.getPostsByUserId(userId);
+      return models.map((m) => m.toEntity()).toList();
+    });
+  }
+
+  @override
   Future<Either<Failure, void>> likePost(PostLikeParams params) async {
     return ErrorConverter.safeCall<void>(() async {
       await source.likePost(params.userId, params.postId);
@@ -47,9 +56,16 @@ class PostRepoImpl extends PostRepo {
   }
 
   @override
+  Future<Either<Failure, List<PostComment>>> getComments(String postId) async {
+    return ErrorConverter.safeCall<List<PostComment>>(() async {
+      return await source.getComments(postId);
+    });
+  }
+
+  @override
   Future<Either<Failure, void>> addComment(PostCommentAddParams params) async {
     return ErrorConverter.safeCall<void>(() async {
-      await source.addComment(params.userId, params.postId, params.text);
+      await source.addComment(params.userId, params.postId, params.text, params.createdAt);
     });
   }
 

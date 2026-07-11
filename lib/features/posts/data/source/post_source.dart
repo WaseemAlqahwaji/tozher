@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tozher/features/posts/data/model/post_add_model.dart';
 import 'package:tozher/features/posts/data/model/post_model.dart';
+import 'package:tozher/features/posts/domain/entity/post_comment.dart';
 
 class PostSource {
   static const String _postsCollection = 'posts';
@@ -51,6 +52,39 @@ class PostSource {
     return posts;
   }
 
+  Future<List<PostModel>> getPostsByUserId(String userId) async {
+    final snapshot = await _firestore
+        .collection(_postsCollection)
+        .where('user_id', isEqualTo: userId)
+        .get();
+
+    final posts = <PostModel>[];
+    for (final doc in snapshot.docs) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      final model = PostModel.fromMap(data);
+
+      // Resolve interest name from ID
+      String? interestName;
+      if (model.interestId != null && model.interestId!.isNotEmpty) {
+        final interestDoc = await _firestore
+            .collection('interests')
+            .doc(model.interestId)
+            .get();
+        if (interestDoc.exists) {
+          interestName = interestDoc.data()?['name'] as String?;
+        }
+      }
+
+      posts.add(model.copyWith(interestName: interestName));
+    }
+
+    // Sort client-side to avoid needing a composite index
+    posts.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
+    return posts;
+  }
+
   // ---- Likes ----
 
   Future<void> likePost(String userId, String postId) async {
@@ -72,12 +106,23 @@ class PostSource {
 
   // ---- Comments ----
 
-  Future<void> addComment(String userId, String postId, String text) async {
+  Future<List<PostComment>> getComments(String postId) async {
+    final snapshot = await _postDoc(postId)
+        .collection(_commentsCollection)
+        .orderBy('created_at', descending: false)
+        .get();
+
+    return snapshot.docs
+        .map((doc) => PostComment.fromMap(doc.id, doc.data()))
+        .toList();
+  }
+
+  Future<void> addComment(String userId, String postId, String text, DateTime createdAt) async {
     final batch = _firestore.batch();
     batch.set(_postDoc(postId).collection(_commentsCollection).doc(), {
       'user_id': userId,
       'text': text,
-      'created_at': FieldValue.serverTimestamp(),
+      'created_at': Timestamp.fromDate(createdAt),
     });
     batch.update(_postDoc(postId), {'commentCount': FieldValue.increment(1)});
     await batch.commit();

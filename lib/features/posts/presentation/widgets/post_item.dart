@@ -2,14 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
 import 'package:tozher/features/posts/domain/entity/post.dart';
 import 'package:tozher/features/posts/domain/params/post_like_params.dart';
-import 'package:tozher/features/posts/domain/params/post_share_params.dart';
 import 'package:tozher/features/posts/domain/params/post_support_params.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_like_cubit.dart';
-import 'package:tozher/features/posts/presentation/cubit/post_share_cubit.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_support_cubit.dart';
+import 'package:tozher/features/posts/presentation/widgets/post_comment_sheet.dart';
 import 'package:tozher/generated/l10n.dart';
 import 'package:tozher/injection.dart';
 
@@ -26,7 +26,6 @@ class _PostItemState extends State<PostItem> {
   late bool _isSupported;
   late int _likeCount;
   late int _supportCount;
-  late int _shareCount;
 
   @override
   void initState() {
@@ -35,7 +34,6 @@ class _PostItemState extends State<PostItem> {
     _isSupported = false;
     _likeCount = widget.post.likeCount;
     _supportCount = widget.post.supportCount;
-    _shareCount = widget.post.shareCount;
   }
 
   void _toggleLike() {
@@ -71,12 +69,10 @@ class _PostItemState extends State<PostItem> {
   }
 
   void _sharePost() {
-    final userId = getIt<AuthLoginCubit>().state.item!.uid!;
-    final cubit = getIt<PostShareCubit>();
-    final params = PostShareParams(userId: userId, postId: widget.post.id);
-
-    setState(() => _shareCount++);
-    cubit.sharePost(params);
+    final postId = widget.post.id;
+    final shareUrl = 'https://tozher.web.app/post?id=$postId';
+    final text = '${widget.post.userFullName}: ${widget.post.title}\n$shareUrl';
+    Share.share(text);
   }
 
   @override
@@ -84,6 +80,8 @@ class _PostItemState extends State<PostItem> {
     final strings = S.of(context);
     final theme = Theme.of(context);
     final post = widget.post;
+    final currentUserId = getIt<AuthLoginCubit>().state.item?.uid;
+    final isOwnPost = currentUserId != null && post.userId == currentUserId;
 
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
@@ -198,38 +196,52 @@ class _PostItemState extends State<PostItem> {
                 ),
                 Gap(8.w),
                 Text(
-                  '$_shareCount ${strings.shares}',
+                  '${widget.post.shareCount} ${strings.shares}',
                   style: TextStyle(fontSize: 12.sp, color: Colors.grey),
                 ),
               ],
             ),
-            Gap(8.h),
 
-            // Action buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _ActionButton(
-                  icon: _isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: _isLiked ? Colors.red : null,
-                  onTap: _toggleLike,
-                ),
-                _ActionButton(
-                  icon: Icons.chat_bubble_outline,
-                  onTap: () {
-                    // TODO: open comment sheet
-                  },
-                ),
-                _ActionButton(
-                  icon: _isSupported
-                      ? Icons.volunteer_activism
-                      : Icons.volunteer_activism_outlined,
-                  color: _isSupported ? theme.primaryColor : null,
-                  onTap: _toggleSupport,
-                ),
-                _ActionButton(icon: Icons.share_outlined, onTap: _sharePost),
-              ],
-            ),
+            // Action buttons – hidden for own posts
+            if (!isOwnPost) ...[
+              Gap(8.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _ActionButton(
+                    icon: _isLiked ? Icons.favorite : Icons.favorite_border,
+                    color: _isLiked ? Colors.red : null,
+                    onTap: _toggleLike,
+                  ),
+                  _ActionButton(
+                    icon: Icons.chat_bubble_outline,
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Theme.of(
+                          context,
+                        ).scaffoldBackgroundColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20.r),
+                          ),
+                        ),
+                        builder: (_) => PostCommentSheet(postId: post.id),
+                      );
+                    },
+                  ),
+                  _ActionButton(
+                    icon: _isSupported
+                        ? Icons.volunteer_activism
+                        : Icons.volunteer_activism_outlined,
+                    color: _isSupported ? theme.primaryColor : null,
+                    onTap: _toggleSupport,
+                  ),
+                  _ActionButton(icon: Icons.share_outlined, onTap: _sharePost),
+                ],
+              ),
+            ],
           ],
         ),
       ),

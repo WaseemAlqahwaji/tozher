@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "comments": MessageLookupByLibrary.simpleMessage("Comments"),
     "completeYourProfile": MessageLookupByLibrary.simpleMessage(
       "Complete your profile",
     ),
@@ -106,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAchievementsYet": MessageLookupByLibrary.simpleMessage(
       "No achievements yet",
     ),
+    "noCommentsYet": MessageLookupByLibrary.simpleMessage("No comments yet"),
     "noPostsYet": MessageLookupByLibrary.simpleMessage("No posts yet"),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -166,5 +168,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
       "What\'s on your mind?",
     ),
+    "writeComment": MessageLookupByLibrary.simpleMessage("Write a comment..."),
   };
 }

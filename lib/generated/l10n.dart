@@ -816,6 +816,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Comments`
+  String get comments {
+    return Intl.message(
+      'Comments',
+      name: 'comments',
+      desc: 'Title for the comments section',
+      args: [],
+    );
+  }
+
+  /// `No comments yet`
+  String get noCommentsYet {
+    return Intl.message(
+      'No comments yet',
+      name: 'noCommentsYet',
+      desc: 'Shown when a post has no comments',
+      args: [],
+    );
+  }
+
+  /// `Write a comment...`
+  String get writeComment {
+    return Intl.message(
+      'Write a comment...',
+      name: 'writeComment',
+      desc: 'Placeholder for the comment input field',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

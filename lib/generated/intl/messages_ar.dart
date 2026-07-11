@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "comments": MessageLookupByLibrary.simpleMessage("التعليقات"),
     "completedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت العملية بنجاح",
     ),
@@ -97,6 +98,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAchievementsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إنجازات بعد",
     ),
+    "noCommentsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد تعليقات بعد",
+    ),
     "noPostsYet": MessageLookupByLibrary.simpleMessage("لا توجد منشورات بعد"),
     "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -157,5 +161,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
       "ما الذي يدور في ذهنك؟",
     ),
+    "writeComment": MessageLookupByLibrary.simpleMessage("اكتب تعليقاً..."),
   };
 }

@@ -23,6 +23,7 @@ dependencies:
   retrofit: ^4.9.2
   flutter_spinkit: ^5.2.2
   url_launcher: ^6.3.2
+  share_plus: ^13.2.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   gap: ^3.0.1

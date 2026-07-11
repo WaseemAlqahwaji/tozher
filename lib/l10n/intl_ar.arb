@@ -253,5 +253,17 @@
   "noAchievementsYet": "لا توجد إنجازات بعد",
   "@noAchievementsYet": {
     "description": "Shown when a goal has no achievements loaded"
+  },
+  "comments": "التعليقات",
+  "@comments": {
+    "description": "Title for the comments section"
+  },
+  "noCommentsYet": "لا توجد تعليقات بعد",
+  "@noCommentsYet": {
+    "description": "Shown when a post has no comments"
+  },
+  "writeComment": "اكتب تعليقاً...",
+  "@writeComment": {
+    "description": "Placeholder for the comment input field"
   }
 }

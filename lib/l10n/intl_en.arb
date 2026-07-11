@@ -254,5 +254,17 @@
   "noAchievementsYet": "No achievements yet",
   "@noAchievementsYet": {
     "description": "Shown when a goal has no achievements loaded"
+  },
+  "comments": "Comments",
+  "@comments": {
+    "description": "Title for the comments section"
+  },
+  "noCommentsYet": "No comments yet",
+  "@noCommentsYet": {
+    "description": "Shown when a post has no comments"
+  },
+  "writeComment": "Write a comment...",
+  "@writeComment": {
+    "description": "Placeholder for the comment input field"
   }
 }

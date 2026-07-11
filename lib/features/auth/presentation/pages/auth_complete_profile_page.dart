@@ -51,6 +51,7 @@ class _AuthCompleteProfilePageState extends State<AuthCompleteProfilePage> {
   Widget build(BuildContext context) {
     final strings = S.of(context);
     return Scaffold(
+      appBar: AppBar(),
       body: ReusableBlocListener<AuthUpdateProfileCubit, void>(
         cubit: updateProfileCubit,
         onSuccess: (value) {
