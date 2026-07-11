@@ -38,6 +38,11 @@ import 'package:tozher/features/posts/data/repo/post_repo_impl.dart';
 import 'package:tozher/features/posts/data/source/post_source.dart';
 import 'package:tozher/features/posts/domain/repo/post_repo.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_add_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/post_comment_add_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/post_get_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/post_like_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/post_share_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/post_support_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -124,8 +129,23 @@ Future<void> configureInjection(String env) async {
   getIt.registerLazySingleton<PostRepo>(
     () => PostRepoImpl(source: getIt<PostSource>()),
   );
+  getIt.registerFactory<PostGetCubit>(
+    () => PostGetCubit(postRepo: getIt<PostRepo>()),
+  );
   getIt.registerFactory<PostAddCubit>(
     () => PostAddCubit(postRepo: getIt<PostRepo>()),
+  );
+  getIt.registerFactory<PostLikeCubit>(
+    () => PostLikeCubit(postRepo: getIt<PostRepo>()),
+  );
+  getIt.registerFactory<PostCommentAddCubit>(
+    () => PostCommentAddCubit(postRepo: getIt<PostRepo>()),
+  );
+  getIt.registerFactory<PostSupportCubit>(
+    () => PostSupportCubit(postRepo: getIt<PostRepo>()),
+  );
+  getIt.registerFactory<PostShareCubit>(
+    () => PostShareCubit(postRepo: getIt<PostRepo>()),
   );
 
   // Image Upload

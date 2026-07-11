@@ -767,6 +767,36 @@ class S {
     );
   }
 
+  /// `Supports`
+  String get supports {
+    return Intl.message(
+      'Supports',
+      name: 'supports',
+      desc: 'Label for support count on posts',
+      args: [],
+    );
+  }
+
+  /// `No posts yet`
+  String get noPostsYet {
+    return Intl.message(
+      'No posts yet',
+      name: 'noPostsYet',
+      desc: 'Shown when the post feed is empty',
+      args: [],
+    );
+  }
+
+  /// `Shares`
+  String get shares {
+    return Intl.message(
+      'Shares',
+      name: 'shares',
+      desc: 'Label for share count on posts',
+      args: [],
+    );
+  }
+
   /// `MENTION INTERESTS`
   String get mentionInterests {
     return Intl.message(

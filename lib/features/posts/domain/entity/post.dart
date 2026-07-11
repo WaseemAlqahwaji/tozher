@@ -1,5 +1,7 @@
 class Post {
   final String id;
+  final String userId;
+  final String userFullName;
   final String title;
   final List<String> photos;
   final int likeCount;
@@ -11,6 +13,8 @@ class Post {
 
   const Post({
     required this.id,
+    required this.userId,
+    required this.userFullName,
     required this.title,
     required this.photos,
     required this.likeCount,

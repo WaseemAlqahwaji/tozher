@@ -235,6 +235,18 @@
   "@addPhotos": {
     "description": "Label for the add photos upload area"
   },
+  "supports": "Supports",
+  "@supports": {
+    "description": "Label for support count on posts"
+  },
+  "noPostsYet": "No posts yet",
+  "@noPostsYet": {
+    "description": "Shown when the post feed is empty"
+  },
+  "shares": "Shares",
+  "@shares": {
+    "description": "Label for share count on posts"
+  },
   "mentionInterests": "MENTION INTERESTS",
   "@mentionInterests": {
     "description": "Section title for mentioning interests in a post"

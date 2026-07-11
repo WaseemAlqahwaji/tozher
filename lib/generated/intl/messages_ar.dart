@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAchievementsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إنجازات بعد",
     ),
+    "noPostsYet": MessageLookupByLibrary.simpleMessage("لا توجد منشورات بعد"),
     "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
@@ -134,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "search": MessageLookupByLibrary.simpleMessage("بحث"),
     "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
     "sendEmail": MessageLookupByLibrary.simpleMessage("إرسال إيميل"),
+    "shares": MessageLookupByLibrary.simpleMessage("مشاركة"),
+    "supports": MessageLookupByLibrary.simpleMessage("دعم"),
     "userNotFound": MessageLookupByLibrary.simpleMessage("مستخدم غير موجود"),
     "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "usernameHasBeenTakenChangeIt": MessageLookupByLibrary.simpleMessage(

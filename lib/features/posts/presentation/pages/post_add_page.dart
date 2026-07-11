@@ -9,6 +9,7 @@ import 'package:tozher/features/core/constants/app_constants.dart';
 import 'package:tozher/features/core/domain/entity/base_state.dart';
 import 'package:tozher/features/core/presentation/widgets/loading_widget.dart';
 import 'package:tozher/features/core/presentation/widgets/reusable_bloc_listner.dart';
+import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
 import 'package:tozher/features/image_upload/presentation/cubit/image_upload_cubit.dart';
 import 'package:tozher/features/interests/domain/entity/interest.dart';
 import 'package:tozher/features/interests/presentation/cubit/interest_get_cubit.dart';
@@ -91,8 +92,11 @@ class _PostAddPageState extends State<PostAddPage> {
       if (photoUrls.isEmpty) return;
     }
 
+    final currentUser = getIt<AuthLoginCubit>().state.item!;
     postAddCubit.addPost(
       PostAddParams(
+        userId: currentUser.uid!,
+        userFullName: currentUser.fullname ?? currentUser.username ?? '',
         title: title,
         photos: photoUrls,
         likeCount: 0,

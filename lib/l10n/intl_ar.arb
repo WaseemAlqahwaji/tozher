@@ -234,6 +234,18 @@
   "@addPhotos": {
     "description": "Label for the add photos upload area"
   },
+  "supports": "دعم",
+  "@supports": {
+    "description": "Label for support count on posts"
+  },
+  "noPostsYet": "لا توجد منشورات بعد",
+  "@noPostsYet": {
+    "description": "Shown when the post feed is empty"
+  },
+  "shares": "مشاركة",
+  "@shares": {
+    "description": "Label for share count on posts"
+  },
   "mentionInterests": "ذكر اهتمامات",
   "@mentionInterests": {
     "description": "Section title for mentioning interests in a post"

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tozher/features/posts/domain/params/post_add_params.dart';
 
 class PostAddModel {
+  final String userId;
+  final String userFullName;
   final String title;
   final List<String> photos;
   final int likeCount;
@@ -12,6 +14,8 @@ class PostAddModel {
   final DateTime createdAt;
 
   PostAddModel({
+    required this.userId,
+    required this.userFullName,
     required this.title,
     required this.photos,
     required this.likeCount,
@@ -24,6 +28,8 @@ class PostAddModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'user_id': userId,
+      'user_full_name': userFullName,
       'title': title,
       'photos': photos,
       'likeCount': likeCount,
@@ -39,6 +45,8 @@ class PostAddModel {
 extension PostAddParamsToModel on PostAddParams {
   PostAddModel toModel() {
     return PostAddModel(
+      userId: userId,
+      userFullName: userFullName,
       title: title,
       photos: photos,
       likeCount: likeCount,

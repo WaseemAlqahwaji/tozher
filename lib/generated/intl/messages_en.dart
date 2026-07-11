@@ -106,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAchievementsYet": MessageLookupByLibrary.simpleMessage(
       "No achievements yet",
     ),
+    "noPostsYet": MessageLookupByLibrary.simpleMessage("No posts yet"),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
@@ -141,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
     "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
+    "shares": MessageLookupByLibrary.simpleMessage("Shares"),
+    "supports": MessageLookupByLibrary.simpleMessage("Supports"),
     "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
     "username": MessageLookupByLibrary.simpleMessage("Username"),
     "usernameHasBeenTakenChangeIt": MessageLookupByLibrary.simpleMessage(
