@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tozher/features/auth/data/model/user_model.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_login_cubit.dart';
+import 'package:tozher/features/auth/presentation/cubit/auth_logout_cubit.dart';
+import 'package:tozher/features/core/domain/entity/base_state.dart';
 import 'package:tozher/features/core/presentation/widgets/reusable_bloc_builder.dart';
 import 'package:tozher/features/goals/domain/entity/goal.dart';
 import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
@@ -12,6 +15,7 @@ import 'package:tozher/features/interests/presentation/cubit/interests_get_user_
 import 'package:tozher/features/posts/domain/entity/post.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_user_get_cubit.dart';
 import 'package:tozher/features/posts/presentation/cubit/profile_support_stats_cubit.dart';
+import 'package:tozher/generated/l10n.dart';
 import 'package:tozher/injection.dart';
 import 'package:tozher/routing/route_names.dart';
 import 'package:tozher/theme/app_colors.dart';
@@ -26,6 +30,7 @@ class AuthProfilePage extends StatefulWidget {
 class AuthProfilePageState extends State<AuthProfilePage>
     with SingleTickerProviderStateMixin {
   late final AuthLoginCubit _authLoginCubit;
+  late final AuthLogoutCubit _authLogoutCubit;
   late final InterestsGetUserCubit _interestsCubit;
   late final PostUserGetCubit _postGetCubit;
   late final GoalGetCubit _goalGetCubit;
@@ -36,6 +41,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
   void initState() {
     super.initState();
     _authLoginCubit = getIt<AuthLoginCubit>();
+    _authLogoutCubit = getIt<AuthLogoutCubit>();
     _interestsCubit = getIt<InterestsGetUserCubit>();
     _postGetCubit = getIt<PostUserGetCubit>();
     _goalGetCubit = getIt<GoalGetCubit>();
@@ -48,7 +54,8 @@ class AuthProfilePageState extends State<AuthProfilePage>
   void _loadData() {
     final user = _authLoginCubit.state.item;
     if (user?.uid != null) {
-      _interestsCubit.getInterests(user!.uid!);
+      _authLoginCubit.refreshUser(user!.uid!);
+      _interestsCubit.getInterests(user.uid!);
       _postGetCubit.getPostsByUserId(user.uid!);
       _goalGetCubit.getGoals(user.uid!);
       _statsCubit.loadStats(user.uid!);
@@ -57,6 +64,33 @@ class AuthProfilePageState extends State<AuthProfilePage>
 
   /// Called externally (e.g. from HomeLayout) to refresh data
   void reloadData() => _loadData();
+
+  void _showLogoutDialog(BuildContext context) {
+    final strings = S.of(context);
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(strings.logoutTitle),
+        content: Text(strings.logoutConfirmation),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(strings.cancel),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              _authLogoutCubit.logout();
+            },
+            child: Text(
+              strings.logout,
+              style: TextStyle(color: AppColors.error),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   void dispose() {
@@ -71,8 +105,9 @@ class AuthProfilePageState extends State<AuthProfilePage>
       onRetry: _loadData,
       builder: (context, state) {
         final user = state.item;
+        final strings = S.of(context);
         if (user == null) {
-          return const Center(child: Text('No user data'));
+          return Center(child: Text(strings.noUserData));
         }
         return _buildProfileContent(user);
       },
@@ -80,25 +115,33 @@ class AuthProfilePageState extends State<AuthProfilePage>
   }
 
   Widget _buildProfileContent(UserModel user) {
-    return RefreshIndicator(
-      onRefresh: () async => _loadData(),
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          children: [
-            Gap(20.h),
-            _buildProfileHeader(user),
-            Gap(20.h),
-            _buildStatsRow(user),
-            Gap(20.h),
-            _buildInterestsSection(),
-            Gap(16.h),
-            _buildTabBar(),
-            Gap(12.h),
-            _buildTabContent(user),
-            Gap(24.h),
-          ],
+    return BlocListener<AuthLogoutCubit, BaseState>(
+      bloc: _authLogoutCubit,
+      listener: (context, state) {
+        if (state.isSuccess == true) {
+          context.goNamed(RouteNames.login);
+        }
+      },
+      child: RefreshIndicator(
+        onRefresh: () async => _loadData(),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            children: [
+              Gap(20.h),
+              _buildProfileHeader(user),
+              Gap(20.h),
+              _buildStatsRow(user),
+              Gap(20.h),
+              _buildInterestsSection(),
+              Gap(16.h),
+              _buildTabBar(),
+              Gap(12.h),
+              _buildTabContent(user),
+              Gap(24.h),
+            ],
+          ),
         ),
       ),
     );
@@ -108,6 +151,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
   // Profile Header – avatar, name, handle, edit button
   // ---------------------------------------------------------------------------
   Widget _buildProfileHeader(UserModel user) {
+    final strings = S.of(context);
     final fullName = user.fullname ?? 'User';
     final username = user.username ?? 'user';
     final age = user.age;
@@ -144,25 +188,77 @@ class AuthProfilePageState extends State<AuthProfilePage>
           ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
         ),
         Gap(16.h),
-        // Edit Profile button
-        SizedBox(
-          width: 160.w,
-          child: OutlinedButton(
-            onPressed: () {
-              context.pushNamed(RouteNames.completeProfile, extra: user.uid);
-            },
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: AppColors.primary),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.r),
+        // Edit Profile + Logout buttons
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 140.w,
+              child: OutlinedButton(
+                onPressed: () {
+                  context.pushNamed(
+                    RouteNames.completeProfile,
+                    extra: user.uid,
+                  );
+                },
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: AppColors.primary),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                ),
+                child: Text(
+                  strings.editProfile,
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                  ),
+                ),
               ),
             ),
-            child: Text(
-              'Edit Profile',
-              style: TextStyle(
-                color: AppColors.primary,
-                fontWeight: FontWeight.w600,
-                fontSize: 14.sp,
+            Gap(10.w),
+            SizedBox(
+              width: 140.w,
+              child: OutlinedButton.icon(
+                onPressed: () => _showLogoutDialog(context),
+                icon: Icon(Icons.logout_rounded, size: 18.sp),
+                label: Text(
+                  strings.logout,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp,
+                  ),
+                ),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: AppColors.error,
+                  side: const BorderSide(color: AppColors.error),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Gap(10.h),
+        // Change Interests button
+        SizedBox(
+          width: 290.w,
+          child: OutlinedButton.icon(
+            onPressed: () {
+              context.pushNamed(RouteNames.addUserInterests);
+            },
+            icon: Icon(Icons.interests_rounded, size: 18.sp),
+            label: Text(
+              'Change Interests',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14.sp),
+            ),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.accent,
+              side: const BorderSide(color: AppColors.accent),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.r),
               ),
             ),
           ),
@@ -175,6 +271,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
   // Stats Cards – Points, Supports, Supporting
   // ---------------------------------------------------------------------------
   Widget _buildStatsRow(UserModel user) {
+    final strings = S.of(context);
     return ReusableBlocBuilder<ProfileSupportStatsCubit, ProfileSupportStats>(
       cubit: _statsCubit,
       onRetry: () => _statsCubit.loadStats(user.uid!),
@@ -185,7 +282,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
           children: [
             Expanded(
               child: _buildStatCard(
-                title: 'Points',
+                title: strings.points,
                 value: '${user.points ?? 0}',
                 icon: Icons.stars_rounded,
                 color: AppColors.primary,
@@ -194,7 +291,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
             Gap(10.w),
             Expanded(
               child: _buildStatCard(
-                title: 'Supports',
+                title: strings.supports,
                 value: '${stats?.supportsReceived ?? 0}',
                 icon: Icons.favorite_rounded,
                 color: AppColors.accent,
@@ -203,7 +300,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
             Gap(10.w),
             Expanded(
               child: _buildStatCard(
-                title: 'Supporting',
+                title: strings.supporting,
                 value: '${stats?.supportingCount ?? 0}',
                 icon: Icons.volunteer_activism_rounded,
                 color: AppColors.success,
@@ -257,6 +354,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
   // Interests Section
   // ---------------------------------------------------------------------------
   Widget _buildInterestsSection() {
+    final strings = S.of(context);
     return ReusableBlocBuilder<InterestsGetUserCubit, List<Interest>>(
       cubit: _interestsCubit,
       onRetry: () {
@@ -274,7 +372,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Interests',
+              strings.interests,
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
@@ -329,9 +427,9 @@ class AuthProfilePageState extends State<AuthProfilePage>
         unselectedLabelColor: AppColors.textSecondary,
         labelStyle: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
         dividerColor: Colors.transparent,
-        tabs: const [
-          Tab(text: 'Posts'),
-          Tab(text: 'Public Goals'),
+        tabs: [
+          Tab(text: S.of(context).posts),
+          Tab(text: S.of(context).publicGoals),
         ],
       ),
     );
@@ -354,6 +452,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
   // Posts Tab – Grid of post images
   // ---------------------------------------------------------------------------
   Widget _buildPostsTab(UserModel user) {
+    final strings = S.of(context);
     return ReusableBlocBuilder<PostUserGetCubit, List<Post>>(
       cubit: _postGetCubit,
       onRetry: _loadData,
@@ -372,7 +471,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
                 ),
                 Gap(8.h),
                 Text(
-                  'No posts yet',
+                  strings.noPostsYet,
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 14.sp,
@@ -430,6 +529,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
   // Goals Tab – List of public goals
   // ---------------------------------------------------------------------------
   Widget _buildGoalsTab(UserModel user) {
+    final strings = S.of(context);
     return ReusableBlocBuilder<GoalGetCubit, List<Goal>>(
       cubit: _goalGetCubit,
       onRetry: _loadData,
@@ -451,7 +551,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
                 ),
                 Gap(8.h),
                 Text(
-                  'No public goals yet',
+                  strings.noPublicGoalsYet,
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 14.sp,

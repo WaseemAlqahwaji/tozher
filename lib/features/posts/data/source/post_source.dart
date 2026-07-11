@@ -16,6 +16,9 @@ class PostSource {
   DocumentReference _postDoc(String postId) =>
       _firestore.collection(_postsCollection).doc(postId);
 
+  DocumentReference _userDoc(String userId) =>
+      _firestore.collection('users').doc(userId);
+
   // ---- Post CRUD ----
 
   Future<void> addPost(PostAddModel postAddModel) async {
@@ -50,24 +53,24 @@ class PostSource {
       bool isLiked = false;
       bool isSupported = false;
       if (currentUserId != null) {
-        final likeDoc = await _postDoc(doc.id)
-            .collection(_likesCollection)
-            .doc(currentUserId)
-            .get();
+        final likeDoc = await _postDoc(
+          doc.id,
+        ).collection(_likesCollection).doc(currentUserId).get();
         isLiked = likeDoc.exists;
 
-        final supportDoc = await _postDoc(doc.id)
-            .collection(_supportsCollection)
-            .doc(currentUserId)
-            .get();
+        final supportDoc = await _postDoc(
+          doc.id,
+        ).collection(_supportsCollection).doc(currentUserId).get();
         isSupported = supportDoc.exists;
       }
 
-      posts.add(model.copyWith(
-        interestName: interestName,
-        isLikedByCurrentUser: isLiked,
-        isSupportedByCurrentUser: isSupported,
-      ));
+      posts.add(
+        model.copyWith(
+          interestName: interestName,
+          isLikedByCurrentUser: isLiked,
+          isSupportedByCurrentUser: isSupported,
+        ),
+      );
     }
 
     return posts;
@@ -104,24 +107,24 @@ class PostSource {
       bool isLiked = false;
       bool isSupported = false;
       if (currentUserId != null) {
-        final likeDoc = await _postDoc(doc.id)
-            .collection(_likesCollection)
-            .doc(currentUserId)
-            .get();
+        final likeDoc = await _postDoc(
+          doc.id,
+        ).collection(_likesCollection).doc(currentUserId).get();
         isLiked = likeDoc.exists;
 
-        final supportDoc = await _postDoc(doc.id)
-            .collection(_supportsCollection)
-            .doc(currentUserId)
-            .get();
+        final supportDoc = await _postDoc(
+          doc.id,
+        ).collection(_supportsCollection).doc(currentUserId).get();
         isSupported = supportDoc.exists;
       }
 
-      posts.add(model.copyWith(
-        interestName: interestName,
-        isLikedByCurrentUser: isLiked,
-        isSupportedByCurrentUser: isSupported,
-      ));
+      posts.add(
+        model.copyWith(
+          interestName: interestName,
+          isLikedByCurrentUser: isLiked,
+          isSupportedByCurrentUser: isSupported,
+        ),
+      );
     }
 
     // Sort client-side to avoid needing a composite index
@@ -162,7 +165,12 @@ class PostSource {
         .toList();
   }
 
-  Future<void> addComment(String userId, String postId, String text, DateTime createdAt) async {
+  Future<void> addComment(
+    String userId,
+    String postId,
+    String text,
+    DateTime createdAt,
+  ) async {
     final batch = _firestore.batch();
     batch.set(_postDoc(postId).collection(_commentsCollection).doc(), {
       'user_id': userId,
@@ -182,6 +190,9 @@ class PostSource {
       'created_at': Timestamp.now(),
     });
     batch.update(_postDoc(postId), {'supportCount': FieldValue.increment(1)});
+    batch.update(_userDoc(userId), {
+      'supportingCount': FieldValue.increment(1),
+    });
     await batch.commit();
   }
 
@@ -189,6 +200,9 @@ class PostSource {
     final batch = _firestore.batch();
     batch.delete(_postDoc(postId).collection(_supportsCollection).doc(userId));
     batch.update(_postDoc(postId), {'supportCount': FieldValue.increment(-1)});
+    batch.update(_userDoc(userId), {
+      'supportingCount': FieldValue.increment(-1),
+    });
     await batch.commit();
   }
 
@@ -206,17 +220,29 @@ class PostSource {
     return total;
   }
 
-  /// Number of posts this user has supported
+  /// Number of posts this user has supported.
+  ///
+  /// Reads from the user document's [supportingCount] field (updated atomically
+  /// in [supportPost] / [unsupportPost] batches). Falls back to a collection-
+  /// group query for data written before the counter was introduced.
   Future<int> getUserSupportingCount(String userId) async {
+    // Primary: read the counter stored on the user document (fast, no index)
+    final userDoc = await _userDoc(userId).get();
+    if (userDoc.exists) {
+      final data = userDoc.data() as Map<String, dynamic>?;
+      if (data != null && data.containsKey('supportingCount')) {
+        return (data['supportingCount'] as num?)?.toInt() ?? 0;
+      }
+    }
+
+    // Fallback: collection-group query for legacy data
     try {
       final snapshot = await _firestore
           .collectionGroup(_supportsCollection)
           .where('user_id', isEqualTo: userId)
           .get();
-
       return snapshot.docs.length;
     } on FirebaseException catch (e) {
-      // Collection group query requires an index; return 0 gracefully
       if (e.code == 'failed-precondition') return 0;
       rethrow;
     }

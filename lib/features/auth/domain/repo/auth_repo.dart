@@ -17,7 +17,7 @@ abstract class AuthRepo {
 
   Future<Either<Failure, List<UserModel>>> searchUsers(String query);
 
-  // Future<Either<Failure, UserModel>> getProfile();
+  Future<Either<Failure, UserModel>> getProfile(String uid);
 
   Stream<User?> get userStream;
 }

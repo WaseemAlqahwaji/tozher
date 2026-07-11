@@ -23,7 +23,7 @@ class AuthSource {
     if (!user.exists) {
       throw Exception("User not found");
     }
-    return UserModel.fromMap(user.data()!);
+    return UserModel.fromMap(user.data()!)..uid = uid;
   }
 
   Future<void> updateProfile(AuthUpdateProfileParams params) async {
@@ -45,7 +45,9 @@ class AuthSource {
     final snapshot = await _firestore
         .collection(collectionName)
         .orderBy('username')
-        .startAt([query]).endAt(['$query\uf8ff']).get();
+        .startAt([query])
+        .endAt(['$query\uf8ff'])
+        .get();
 
     return snapshot.docs
         .map((doc) => UserModel.fromMap(doc.data())..uid = doc.id)

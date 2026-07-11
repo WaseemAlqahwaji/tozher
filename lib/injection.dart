@@ -22,6 +22,7 @@ import 'package:tozher/features/interests/presentation/cubit/interest_delete_cub
 import 'package:tozher/features/interests/presentation/cubit/interest_get_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interest_update_cubit.dart';
 import 'package:tozher/features/interests/presentation/cubit/interests_get_user_cubit.dart';
+import 'package:tozher/features/interests/presentation/cubit/interests_user_add_cubit.dart';
 import 'package:tozher/features/goals/data/repo/goal_repo_impl.dart';
 import 'package:tozher/features/goals/data/source/goal_source.dart';
 import 'package:tozher/features/goals/domain/repo/goal_repo.dart';
@@ -68,7 +69,7 @@ Future<void> configureInjection(String env) async {
   getIt.registerFactory<AuthSendPasswordResetCubit>(
     () => AuthSendPasswordResetCubit(authRepo: getIt<AuthRepo>()),
   );
-  getIt.registerFactory<AuthLogoutCubit>(
+  getIt.registerLazySingleton<AuthLogoutCubit>(
     () => AuthLogoutCubit(authRepo: getIt<AuthRepo>()),
   );
   getIt.registerFactory<AuthUpdateProfileCubit>(
@@ -100,6 +101,9 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<InterestsGetUserCubit>(
     () => InterestsGetUserCubit(interestRepo: getIt<InterestRepo>()),
+  );
+  getIt.registerFactory<InterestsUserAddCubit>(
+    () => InterestsUserAddCubit(interestRepo: getIt<InterestRepo>()),
   );
 
   // Goals

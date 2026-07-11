@@ -242,6 +242,14 @@
   "@noPostsYet": {
     "description": "Shown when the post feed is empty"
   },
+  "noGoalsYet": "لا توجد أهداف بعد",
+  "@noGoalsYet": {
+    "description": "Shown when the goals list is empty"
+  },
+  "noGoalsYetSubtitle": "اضغط على \"+ إضافة هدف\" لإنشاء هدفك الأول",
+  "@noGoalsYetSubtitle": {
+    "description": "Subtitle hint encouraging the user to add their first goal"
+  },
   "shares": "مشاركة",
   "@shares": {
     "description": "Label for share count on posts"
@@ -273,5 +281,61 @@
   "all": "الكل",
   "@all": {
     "description": "Filter chip label to show all posts"
+  },
+  "noUserData": "لا توجد بيانات مستخدم",
+  "@noUserData": {
+    "description": "Shown when user data is not available on the profile page"
+  },
+  "editProfile": "تعديل الملف الشخصي",
+  "@editProfile": {
+    "description": "Button label to navigate to edit profile page"
+  },
+  "points": "النقاط",
+  "@points": {
+    "description": "Label for the user points stat card"
+  },
+  "logout": "تسجيل الخروج",
+  "@logout": {
+    "description": "Label for the logout button"
+  },
+  "logoutTitle": "تسجيل الخروج",
+  "@logoutTitle": {
+    "description": "Title of the logout confirmation dialog"
+  },
+  "logoutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "@logoutConfirmation": {
+    "description": "Message shown in the logout confirmation dialog"
+  },
+  "interests": "الاهتمامات",
+  "@interests": {
+    "description": "Section title for user interests on the profile page"
+  },
+  "posts": "المنشورات",
+  "@posts": {
+    "description": "Tab label for the posts tab on the profile page"
+  },
+  "publicGoals": "الأهداف العامة",
+  "@publicGoals": {
+    "description": "Tab label for the public goals tab on the profile page"
+  },
+  "noPublicGoalsYet": "لا توجد أهداف عامة بعد",
+  "@noPublicGoalsYet": {
+    "description": "Shown when the user has no public goals on their profile"
+  },
+  "supporting": "يدعم",
+  "@supporting": {
+    "description": "Label for the supporting count stat card"
+  },
+  "trackProgress": "تتبع التقدم",
+  "@trackProgress": {
+    "description": "Subtitle above the My Goals heading"
+  },
+  "myGoals": "أهدافي",
+  "@myGoals": {
+    "description": "Page title for the goals page"
+  },
+  "addGoal": "+ إضافة هدف",
+  "@addGoal": {
+    "description": "Button label to navigate to add goal page"
   }
 }

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "achievementHint": m0,
     "addAchievement": MessageLookupByLibrary.simpleMessage("Add Achievement"),
+    "addGoal": MessageLookupByLibrary.simpleMessage("+ Add Goal"),
     "addPhotos": MessageLookupByLibrary.simpleMessage("Add Photos"),
     "age": MessageLookupByLibrary.simpleMessage("age"),
     "ageHint": MessageLookupByLibrary.simpleMessage("Enter your age"),
@@ -48,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t you have an account?",
     ),
+    "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
     "emailHint": MessageLookupByLibrary.simpleMessage("Hello@tozher.com"),
     "emailNotValid": MessageLookupByLibrary.simpleMessage("Email not valid"),
@@ -90,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goals": MessageLookupByLibrary.simpleMessage("Goals"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("You have an account?"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "interests": MessageLookupByLibrary.simpleMessage("Interests"),
     "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
     "joinCommunity": MessageLookupByLibrary.simpleMessage(
       "Join a community designed for\n shared growth and celebration.",
@@ -97,10 +100,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "keyAchievements": MessageLookupByLibrary.simpleMessage("Key Achievements"),
     "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s go"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to logout?",
+    ),
+    "logoutTitle": MessageLookupByLibrary.simpleMessage("Logout"),
     "male": MessageLookupByLibrary.simpleMessage("male"),
     "mentionInterests": MessageLookupByLibrary.simpleMessage(
       "MENTION INTERESTS",
     ),
+    "myGoals": MessageLookupByLibrary.simpleMessage("My Goals"),
     "newGoal": MessageLookupByLibrary.simpleMessage("New Goal"),
     "newGoalSubtitle": MessageLookupByLibrary.simpleMessage(
       "Set your intentions and let the community cheer you on",
@@ -110,7 +119,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "No achievements yet",
     ),
     "noCommentsYet": MessageLookupByLibrary.simpleMessage("No comments yet"),
+    "noGoalsYet": MessageLookupByLibrary.simpleMessage("No goals yet"),
+    "noGoalsYetSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Tap \"+ Add Goal\" to create your first goal",
+    ),
     "noPostsYet": MessageLookupByLibrary.simpleMessage("No posts yet"),
+    "noPublicGoalsYet": MessageLookupByLibrary.simpleMessage(
+      "No public goals yet",
+    ),
+    "noUserData": MessageLookupByLibrary.simpleMessage("No user data"),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
@@ -127,12 +144,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseVerifyEmail": MessageLookupByLibrary.simpleMessage(
       "Please verify your email",
     ),
+    "points": MessageLookupByLibrary.simpleMessage("Points"),
     "post": MessageLookupByLibrary.simpleMessage("Post"),
+    "posts": MessageLookupByLibrary.simpleMessage("Posts"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "publicGoal": MessageLookupByLibrary.simpleMessage("Public Goal"),
     "publicGoalDescription": MessageLookupByLibrary.simpleMessage(
       "Let others see and support your progress",
     ),
+    "publicGoals": MessageLookupByLibrary.simpleMessage("Public Goals"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "reminderDate": MessageLookupByLibrary.simpleMessage("Reminder Date"),
     "reminderDateHint": MessageLookupByLibrary.simpleMessage(
@@ -147,7 +167,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
     "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
     "shares": MessageLookupByLibrary.simpleMessage("Shares"),
+    "supporting": MessageLookupByLibrary.simpleMessage("Supporting"),
     "supports": MessageLookupByLibrary.simpleMessage("Supports"),
+    "trackProgress": MessageLookupByLibrary.simpleMessage("Track Progress"),
     "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
     "username": MessageLookupByLibrary.simpleMessage("Username"),
     "usernameHasBeenTakenChangeIt": MessageLookupByLibrary.simpleMessage(

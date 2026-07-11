@@ -22,4 +22,14 @@ class AuthLoginCubit extends Cubit<BaseState<UserModel>> {
       },
     );
   }
+
+  /// Re-fetches the user profile from Firestore and updates the state.
+  /// Call this after external mutations (e.g. points change via achievement toggle).
+  void refreshUser(String uid) async {
+    final res = await _authRepo.getProfile(uid);
+    res.fold(
+      (_) {}, // Keep existing state on failure
+      (user) => emit(state.setSuccessState(user)),
+    );
+  }
 }

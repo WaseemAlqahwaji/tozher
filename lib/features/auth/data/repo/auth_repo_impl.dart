@@ -86,4 +86,11 @@ class AuthRepoImpl extends AuthRepo {
       return await _authSource.searchUsers(query);
     });
   }
+
+  @override
+  Future<Either<Failure, UserModel>> getProfile(String uid) async {
+    return ErrorConverter.safeCall(() async {
+      return await _authSource.userProfile(uid);
+    });
+  }
 }

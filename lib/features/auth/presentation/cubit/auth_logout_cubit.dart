@@ -7,7 +7,7 @@ class AuthLogoutCubit extends Cubit<BaseState> {
 
   AuthLogoutCubit({required this.authRepo}) : super(BaseState());
 
-  void logout(String email, String password) async {
+  void logout() async {
     emit(state.setInProgressState());
 
     final res = await authRepo.logout();

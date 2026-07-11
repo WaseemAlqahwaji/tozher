@@ -8,6 +8,7 @@ import 'package:tozher/features/core/presentation/widgets/reusable_bloc_builder.
 import 'package:tozher/features/goals/domain/entity/goal.dart';
 import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
 import 'package:tozher/features/goals/presentation/widgets/goal_list.dart';
+import 'package:tozher/generated/l10n.dart';
 import 'package:tozher/injection.dart';
 import 'package:tozher/routing/route_paths.dart';
 
@@ -29,6 +30,7 @@ class GoalsPageState extends State<GoalsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = S.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -41,9 +43,9 @@ class GoalsPageState extends State<GoalsPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Track Progress"),
+                        Text(strings.trackProgress),
                         Text(
-                          "My Goals",
+                          strings.myGoals,
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
                       ],
@@ -53,7 +55,7 @@ class GoalsPageState extends State<GoalsPage> {
                     onPressed: () {
                       context.push(RoutePaths.addGoal, extra: getGoalsCubit);
                     },
-                    child: Text("+ Add Goal"),
+                    child: Text(strings.addGoal),
                   ),
                 ],
               ),
@@ -66,9 +68,7 @@ class GoalsPageState extends State<GoalsPage> {
                 },
                 cubit: getGoalsCubit,
                 builder: (context, state) {
-                  return GoalList(
-                    goals: state.item!,
-                  );
+                  return GoalList(goals: state.item!);
                 },
               ),
             ],

@@ -17,6 +17,9 @@ class GoalSource {
       .collection(_goalsCollection)
       .doc(goalId);
 
+  DocumentReference _userDoc(String userId) =>
+      _firestore.collection(_usersCollection).doc(userId);
+
   CollectionReference _goalsRef(String userId) => _firestore
       .collection(_usersCollection)
       .doc(userId)
@@ -116,9 +119,18 @@ class GoalSource {
     String achievementId,
     bool isDone,
   ) async {
-    await _achievementsRef(
-      userId,
-      goalId,
-    ).doc(achievementId).update({'is_done': isDone});
+    final batch = _firestore.batch();
+
+    // Update the achievement status
+    batch.update(_achievementsRef(userId, goalId).doc(achievementId), {
+      'is_done': isDone,
+    });
+
+    // Award or deduct points on the user document
+    batch.update(_userDoc(userId), {
+      'points': FieldValue.increment(isDone ? 10 : -10),
+    });
+
+    await batch.commit();
   }
 }

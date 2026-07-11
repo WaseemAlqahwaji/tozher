@@ -7,6 +7,7 @@ import 'package:tozher/features/core/presentation/page/no_route_found_page.dart'
 import 'package:tozher/features/goals/presentation/cubit/goal_get_cubit.dart';
 import 'package:tozher/features/goals/presentation/pages/goal_add_page.dart';
 import 'package:tozher/features/home/presentation/page/home_layout.dart';
+import 'package:tozher/features/interests/presentation/page/interests_user_add.dart';
 import 'package:tozher/features/posts/presentation/pages/post_add_page.dart';
 import 'route_paths.dart';
 import 'route_names.dart';
@@ -59,6 +60,14 @@ class AppRouter {
           builder: (_, state) {
             final cubit = state.extra as GoalGetCubit;
             return GoalAddPage(goalGetCubit: cubit);
+          },
+        ),
+        GoRoute(
+          path: RoutePaths.addUserInterests,
+          name: RouteNames.addUserInterests,
+          builder: (_, state) {
+            final isOnboarding = (state.extra as bool?) ?? false;
+            return InterestsUserAddPage(isOnboarding: isOnboarding);
           },
         ),
       ],

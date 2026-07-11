@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "achievementHint": m0,
     "addAchievement": MessageLookupByLibrary.simpleMessage("أضف إنجازاً"),
+    "addGoal": MessageLookupByLibrary.simpleMessage("+ إضافة هدف"),
     "addPhotos": MessageLookupByLibrary.simpleMessage("أضف صوراً"),
     "age": MessageLookupByLibrary.simpleMessage("العمر"),
     "ageHint": MessageLookupByLibrary.simpleMessage("أدخل عمرك"),
@@ -43,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmAccount": MessageLookupByLibrary.simpleMessage("تأكيد الحساب"),
     "createGoal": MessageLookupByLibrary.simpleMessage("إنشاء هدف"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+    "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailHint": MessageLookupByLibrary.simpleMessage("Hello@tozher.com"),
     "emailNotValid": MessageLookupByLibrary.simpleMessage("الإيميل غير صالح"),
@@ -81,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goals": MessageLookupByLibrary.simpleMessage("الأهداف"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("لديك حساب؟"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "interests": MessageLookupByLibrary.simpleMessage("الاهتمامات"),
     "invalidCode": MessageLookupByLibrary.simpleMessage("كود غير صالح"),
     "joinCommunity": MessageLookupByLibrary.simpleMessage(
       "انضم إلى مجتمع مصمم\nللنمو والاحتفال المشترك.",
@@ -90,8 +93,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "letsGo": MessageLookupByLibrary.simpleMessage("هيا بنا"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    ),
+    "logoutTitle": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
     "mentionInterests": MessageLookupByLibrary.simpleMessage("ذكر اهتمامات"),
+    "myGoals": MessageLookupByLibrary.simpleMessage("أهدافي"),
     "newGoal": MessageLookupByLibrary.simpleMessage("هدف جديد"),
     "newGoalSubtitle": MessageLookupByLibrary.simpleMessage(
       "حدد نواياك ودع المجتمع يشجعك",
@@ -103,7 +112,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "noCommentsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد تعليقات بعد",
     ),
+    "noGoalsYet": MessageLookupByLibrary.simpleMessage("لا توجد أهداف بعد"),
+    "noGoalsYetSubtitle": MessageLookupByLibrary.simpleMessage(
+      "اضغط على \"+ إضافة هدف\" لإنشاء هدفك الأول",
+    ),
     "noPostsYet": MessageLookupByLibrary.simpleMessage("لا توجد منشورات بعد"),
+    "noPublicGoalsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أهداف عامة بعد",
+    ),
+    "noUserData": MessageLookupByLibrary.simpleMessage("لا توجد بيانات مستخدم"),
     "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("********"),
@@ -120,12 +137,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseVerifyEmail": MessageLookupByLibrary.simpleMessage(
       "الرجاء تأكيد بريدك الإلكتروني",
     ),
+    "points": MessageLookupByLibrary.simpleMessage("النقاط"),
     "post": MessageLookupByLibrary.simpleMessage("نشر"),
+    "posts": MessageLookupByLibrary.simpleMessage("المنشورات"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "publicGoal": MessageLookupByLibrary.simpleMessage("هدف عام"),
     "publicGoalDescription": MessageLookupByLibrary.simpleMessage(
       "دع الآخرين يروا ويدعموا تقدمك",
     ),
+    "publicGoals": MessageLookupByLibrary.simpleMessage("الأهداف العامة"),
     "register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "reminderDate": MessageLookupByLibrary.simpleMessage("تاريخ التذكير"),
     "reminderDateHint": MessageLookupByLibrary.simpleMessage(
@@ -142,7 +162,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
     "sendEmail": MessageLookupByLibrary.simpleMessage("إرسال إيميل"),
     "shares": MessageLookupByLibrary.simpleMessage("مشاركة"),
+    "supporting": MessageLookupByLibrary.simpleMessage("يدعم"),
     "supports": MessageLookupByLibrary.simpleMessage("دعم"),
+    "trackProgress": MessageLookupByLibrary.simpleMessage("تتبع التقدم"),
     "userNotFound": MessageLookupByLibrary.simpleMessage("مستخدم غير موجود"),
     "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "usernameHasBeenTakenChangeIt": MessageLookupByLibrary.simpleMessage(

@@ -243,6 +243,14 @@
   "@noPostsYet": {
     "description": "Shown when the post feed is empty"
   },
+  "noGoalsYet": "No goals yet",
+  "@noGoalsYet": {
+    "description": "Shown when the goals list is empty"
+  },
+  "noGoalsYetSubtitle": "Tap \"+ Add Goal\" to create your first goal",
+  "@noGoalsYetSubtitle": {
+    "description": "Subtitle hint encouraging the user to add their first goal"
+  },
   "shares": "Shares",
   "@shares": {
     "description": "Label for share count on posts"
@@ -274,5 +282,61 @@
   "all": "All",
   "@all": {
     "description": "Filter chip label to show all posts"
+  },
+  "noUserData": "No user data",
+  "@noUserData": {
+    "description": "Shown when user data is not available on the profile page"
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Button label to navigate to edit profile page"
+  },
+  "points": "Points",
+  "@points": {
+    "description": "Label for the user points stat card"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Label for the logout button"
+  },
+  "logoutTitle": "Logout",
+  "@logoutTitle": {
+    "description": "Title of the logout confirmation dialog"
+  },
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "@logoutConfirmation": {
+    "description": "Message shown in the logout confirmation dialog"
+  },
+  "interests": "Interests",
+  "@interests": {
+    "description": "Section title for user interests on the profile page"
+  },
+  "posts": "Posts",
+  "@posts": {
+    "description": "Tab label for the posts tab on the profile page"
+  },
+  "publicGoals": "Public Goals",
+  "@publicGoals": {
+    "description": "Tab label for the public goals tab on the profile page"
+  },
+  "noPublicGoalsYet": "No public goals yet",
+  "@noPublicGoalsYet": {
+    "description": "Shown when the user has no public goals on their profile"
+  },
+  "supporting": "Supporting",
+  "@supporting": {
+    "description": "Label for the supporting count stat card"
+  },
+  "trackProgress": "Track Progress",
+  "@trackProgress": {
+    "description": "Subtitle above the My Goals heading"
+  },
+  "myGoals": "My Goals",
+  "@myGoals": {
+    "description": "Page title for the goals page"
+  },
+  "addGoal": "+ Add Goal",
+  "@addGoal": {
+    "description": "Button label to navigate to add goal page"
   }
 }

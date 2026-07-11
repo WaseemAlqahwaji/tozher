@@ -42,14 +42,14 @@ class InterestSource {
   Future<void> addUserInterests(InterestsUserAddModel model) async {
     final userDoc = _firestore.collection(source.collectionName).doc(model.uid);
     await userDoc.update({
-      collectionName: FieldValue.arrayUnion([model.interestsIds]),
+      collectionName: FieldValue.arrayUnion(model.interestsIds),
     });
   }
 
   Future<void> removeUserInterests(InterestsUserRemoveModel model) async {
     final userDoc = _firestore.collection(source.collectionName).doc(model.uid);
     await userDoc.update({
-      collectionName: FieldValue.arrayRemove([model.interestsIds]),
+      collectionName: FieldValue.arrayRemove(model.interestsIds),
     });
   }
 

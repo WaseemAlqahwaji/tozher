@@ -787,6 +787,26 @@ class S {
     );
   }
 
+  /// `No goals yet`
+  String get noGoalsYet {
+    return Intl.message(
+      'No goals yet',
+      name: 'noGoalsYet',
+      desc: 'Shown when the goals list is empty',
+      args: [],
+    );
+  }
+
+  /// `Tap "+ Add Goal" to create your first goal`
+  String get noGoalsYetSubtitle {
+    return Intl.message(
+      'Tap "+ Add Goal" to create your first goal',
+      name: 'noGoalsYetSubtitle',
+      desc: 'Subtitle hint encouraging the user to add their first goal',
+      args: [],
+    );
+  }
+
   /// `Shares`
   String get shares {
     return Intl.message(
@@ -863,6 +883,146 @@ class S {
       'All',
       name: 'all',
       desc: 'Filter chip label to show all posts',
+      args: [],
+    );
+  }
+
+  /// `No user data`
+  String get noUserData {
+    return Intl.message(
+      'No user data',
+      name: 'noUserData',
+      desc: 'Shown when user data is not available on the profile page',
+      args: [],
+    );
+  }
+
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: 'Button label to navigate to edit profile page',
+      args: [],
+    );
+  }
+
+  /// `Points`
+  String get points {
+    return Intl.message(
+      'Points',
+      name: 'points',
+      desc: 'Label for the user points stat card',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: 'Label for the logout button',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logoutTitle {
+    return Intl.message(
+      'Logout',
+      name: 'logoutTitle',
+      desc: 'Title of the logout confirmation dialog',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to logout?`
+  String get logoutConfirmation {
+    return Intl.message(
+      'Are you sure you want to logout?',
+      name: 'logoutConfirmation',
+      desc: 'Message shown in the logout confirmation dialog',
+      args: [],
+    );
+  }
+
+  /// `Interests`
+  String get interests {
+    return Intl.message(
+      'Interests',
+      name: 'interests',
+      desc: 'Section title for user interests on the profile page',
+      args: [],
+    );
+  }
+
+  /// `Posts`
+  String get posts {
+    return Intl.message(
+      'Posts',
+      name: 'posts',
+      desc: 'Tab label for the posts tab on the profile page',
+      args: [],
+    );
+  }
+
+  /// `Public Goals`
+  String get publicGoals {
+    return Intl.message(
+      'Public Goals',
+      name: 'publicGoals',
+      desc: 'Tab label for the public goals tab on the profile page',
+      args: [],
+    );
+  }
+
+  /// `No public goals yet`
+  String get noPublicGoalsYet {
+    return Intl.message(
+      'No public goals yet',
+      name: 'noPublicGoalsYet',
+      desc: 'Shown when the user has no public goals on their profile',
+      args: [],
+    );
+  }
+
+  /// `Supporting`
+  String get supporting {
+    return Intl.message(
+      'Supporting',
+      name: 'supporting',
+      desc: 'Label for the supporting count stat card',
+      args: [],
+    );
+  }
+
+  /// `Track Progress`
+  String get trackProgress {
+    return Intl.message(
+      'Track Progress',
+      name: 'trackProgress',
+      desc: 'Subtitle above the My Goals heading',
+      args: [],
+    );
+  }
+
+  /// `My Goals`
+  String get myGoals {
+    return Intl.message(
+      'My Goals',
+      name: 'myGoals',
+      desc: 'Page title for the goals page',
+      args: [],
+    );
+  }
+
+  /// `+ Add Goal`
+  String get addGoal {
+    return Intl.message(
+      '+ Add Goal',
+      name: 'addGoal',
+      desc: 'Button label to navigate to add goal page',
       args: [],
     );
   }

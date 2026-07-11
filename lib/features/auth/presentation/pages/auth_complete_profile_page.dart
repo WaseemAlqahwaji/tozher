@@ -55,7 +55,7 @@ class _AuthCompleteProfilePageState extends State<AuthCompleteProfilePage> {
       body: ReusableBlocListener<AuthUpdateProfileCubit, void>(
         cubit: updateProfileCubit,
         onSuccess: (value) {
-          context.pushReplacement(RoutePaths.home);
+          context.pushReplacement(RoutePaths.addUserInterests, extra: true);
         },
         child: SingleChildScrollView(
           child: Padding(

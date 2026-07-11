@@ -59,7 +59,14 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
             return;
           }
           if (value?.isProfileCompleted() == false) {
-            context.pushReplacement(RoutePaths.completeProfile, extra: value!.uid!);
+            context.pushReplacement(
+              RoutePaths.completeProfile,
+              extra: value!.uid!,
+            );
+            return;
+          }
+          if (value?.interestIds == null || value!.interestIds!.isEmpty) {
+            context.pushReplacement(RoutePaths.addUserInterests, extra: true);
             return;
           }
           context.pushReplacement(RoutePaths.home);
