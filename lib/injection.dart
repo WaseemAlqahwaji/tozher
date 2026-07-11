@@ -12,6 +12,7 @@ import 'package:tozher/features/auth/presentation/cubit/auth_logout_cubit.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_register_cubit.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_send_password_reset_email_cubit.dart';
 import 'package:tozher/features/auth/presentation/cubit/auth_update_profile_cubit.dart';
+import 'package:tozher/features/auth/presentation/cubit/user_search_cubit.dart';
 import 'package:tozher/features/core/presentation/cubit/localization/localization_cubit.dart';
 import 'package:tozher/features/interests/data/repo/interest_repo_impl.dart';
 import 'package:tozher/features/interests/data/source/interest_source.dart';
@@ -45,6 +46,7 @@ import 'package:tozher/features/posts/presentation/cubit/post_like_cubit.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_share_cubit.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_support_cubit.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_user_get_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/profile_support_stats_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -71,6 +73,9 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<AuthUpdateProfileCubit>(
     () => AuthUpdateProfileCubit(authRepo: getIt<AuthRepo>()),
+  );
+  getIt.registerFactory<UserSearchCubit>(
+    () => UserSearchCubit(authRepo: getIt<AuthRepo>()),
   );
 
   // Interests
@@ -154,6 +159,9 @@ Future<void> configureInjection(String env) async {
   );
   getIt.registerFactory<PostUserGetCubit>(
     () => PostUserGetCubit(postRepo: getIt<PostRepo>()),
+  );
+  getIt.registerFactory<ProfileSupportStatsCubit>(
+    () => ProfileSupportStatsCubit(postRepo: getIt<PostRepo>()),
   );
 
   // Image Upload

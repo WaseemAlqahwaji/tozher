@@ -9,6 +9,7 @@ class UserModel {
   final String? role;
   bool? emailVerified;
   String? uid;
+  List<String>? interestIds;
 
   UserModel({
     required this.email,
@@ -20,6 +21,7 @@ class UserModel {
     this.role,
     this.emailVerified,
     this.uid,
+    this.interestIds,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
@@ -32,6 +34,9 @@ class UserModel {
       points: map['points'],
       role: map['role'],
       emailVerified: map['emailVerified'],
+      interestIds: map['interests'] is List
+          ? List<String>.from(map['interests'])
+          : null,
     );
   }
 
@@ -45,6 +50,7 @@ class UserModel {
       'points': points,
       'role': role,
       'emailVerified': emailVerified,
+      'interests': interestIds,
     };
   }
 

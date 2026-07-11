@@ -10,13 +10,20 @@ import 'package:tozher/features/posts/domain/params/post_support_params.dart';
 
 abstract class PostRepo {
   Future<Either<Failure, void>> addPost(PostAddParams params);
-  Future<Either<Failure, List<Post>>> getPosts();
-  Future<Either<Failure, List<Post>>> getPostsByUserId(String userId);
+  Future<Either<Failure, List<Post>>> getPosts({String? currentUserId});
+  Future<Either<Failure, List<Post>>> getPostsByUserId(
+    String userId, {
+    String? currentUserId,
+  });
 
   Future<Either<Failure, void>> likePost(PostLikeParams params);
   Future<Either<Failure, void>> unlikePost(PostLikeParams params);
   Future<Either<Failure, List<PostComment>>> getComments(String postId);
   Future<Either<Failure, void>> addComment(PostCommentAddParams params);
   Future<Either<Failure, void>> supportPost(PostSupportParams params);
+  Future<Either<Failure, void>> unsupportPost(PostSupportParams params);
   Future<Either<Failure, void>> sharePost(PostShareParams params);
+
+  Future<Either<Failure, int>> getUserSupportsReceived(String userId);
+  Future<Either<Failure, int>> getUserSupportingCount(String userId);
 }

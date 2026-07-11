@@ -15,6 +15,7 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   late PageController pageController;
   int _currentIndex = 0;
+  final _profileKey = GlobalKey<AuthProfilePageState>();
 
   @override
   void initState() {
@@ -27,9 +28,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     final strings = S.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Tozher"),
-      ),
+      appBar: AppBar(title: Text("Tozher")),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         items: [
@@ -59,16 +58,28 @@ class _HomeLayoutState extends State<HomeLayout> {
               curve: Curves.easeInOut,
             );
           });
+          if (value == 3) {
+            _profileKey.currentState?.reloadData();
+          }
         },
       ),
       body: Center(
         child: PageView(
           controller: pageController,
-          children: [HomePage(), SearchPage(), GoalsPage(), AuthProfilePage()],
+          children: [
+            HomePage(),
+            SearchPage(),
+            GoalsPage(),
+            AuthProfilePage(key: _profileKey),
+          ],
           onPageChanged: (value) {
             setState(() {
               _currentIndex = value;
             });
+            // Reload profile data when switching to profile tab
+            if (value == 3) {
+              _profileKey.currentState?.reloadData();
+            }
           },
         ),
       ),

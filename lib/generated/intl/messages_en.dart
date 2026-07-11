@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPhotos": MessageLookupByLibrary.simpleMessage("Add Photos"),
     "age": MessageLookupByLibrary.simpleMessage("age"),
     "ageHint": MessageLookupByLibrary.simpleMessage("Enter your age"),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "appName": MessageLookupByLibrary.simpleMessage("Tozher"),
     "appTagline": MessageLookupByLibrary.simpleMessage(
       "Collective goals, shared achievement.",
@@ -65,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorHappend": MessageLookupByLibrary.simpleMessage("Error Happend"),
     "female": MessageLookupByLibrary.simpleMessage("female"),
     "fieldRequired": MessageLookupByLibrary.simpleMessage("Field required"),
+    "forMe": MessageLookupByLibrary.simpleMessage("For Me"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forget Password?"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "fullNameHint": MessageLookupByLibrary.simpleMessage("Raghad Zeno"),

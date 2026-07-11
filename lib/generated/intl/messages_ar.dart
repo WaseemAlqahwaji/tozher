@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPhotos": MessageLookupByLibrary.simpleMessage("أضف صوراً"),
     "age": MessageLookupByLibrary.simpleMessage("العمر"),
     "ageHint": MessageLookupByLibrary.simpleMessage("أدخل عمرك"),
+    "all": MessageLookupByLibrary.simpleMessage("الكل"),
     "appName": MessageLookupByLibrary.simpleMessage("توذر"),
     "appTagline": MessageLookupByLibrary.simpleMessage(
       "أهداف جماعية، إنجاز مشترك.",
@@ -60,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorHappend": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "female": MessageLookupByLibrary.simpleMessage("أنثى"),
     "fieldRequired": MessageLookupByLibrary.simpleMessage("الحقل مطلوب"),
+    "forMe": MessageLookupByLibrary.simpleMessage("من أجلي"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "fullNameHint": MessageLookupByLibrary.simpleMessage("رغد زينو"),

@@ -15,7 +15,7 @@ abstract class AuthRepo {
 
   Future<Either<Failure, void>> updateProfile(AuthUpdateProfileParams params);
 
-
+  Future<Either<Failure, List<UserModel>>> searchUsers(String query);
 
   // Future<Either<Failure, UserModel>> getProfile();
 

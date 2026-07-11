@@ -10,6 +10,8 @@ class Post {
   final int shareCount;
   final DateTime createdAt;
   final String? interestName;
+  final bool isLikedByCurrentUser;
+  final bool isSupportedByCurrentUser;
 
   const Post({
     required this.id,
@@ -23,5 +25,7 @@ class Post {
     required this.shareCount,
     required this.createdAt,
     this.interestName,
+    this.isLikedByCurrentUser = false,
+    this.isSupportedByCurrentUser = false,
   });
 }

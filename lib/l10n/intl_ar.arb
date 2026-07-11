@@ -265,5 +265,13 @@
   "writeComment": "اكتب تعليقاً...",
   "@writeComment": {
     "description": "Placeholder for the comment input field"
+  },
+  "forMe": "من أجلي",
+  "@forMe": {
+    "description": "Filter chip label for posts matching user interests"
+  },
+  "all": "الكل",
+  "@all": {
+    "description": "Filter chip label to show all posts"
   }
 }

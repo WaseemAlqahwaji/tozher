@@ -266,5 +266,13 @@
   "writeComment": "Write a comment...",
   "@writeComment": {
     "description": "Placeholder for the comment input field"
+  },
+  "forMe": "For Me",
+  "@forMe": {
+    "description": "Filter chip label for posts matching user interests"
+  },
+  "all": "All",
+  "@all": {
+    "description": "Filter chip label to show all posts"
   }
 }

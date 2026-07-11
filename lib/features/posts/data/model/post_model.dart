@@ -14,6 +14,8 @@ class PostModel {
   final DateTime createdAt;
   final String? interestId;
   final String? interestName;
+  final bool isLikedByCurrentUser;
+  final bool isSupportedByCurrentUser;
 
   PostModel({
     required this.id,
@@ -28,9 +30,15 @@ class PostModel {
     required this.createdAt,
     this.interestId,
     this.interestName,
+    this.isLikedByCurrentUser = false,
+    this.isSupportedByCurrentUser = false,
   });
 
-  PostModel copyWith({String? interestName}) {
+  PostModel copyWith({
+    String? interestName,
+    bool? isLikedByCurrentUser,
+    bool? isSupportedByCurrentUser,
+  }) {
     return PostModel(
       id: id,
       userId: userId,
@@ -44,6 +52,10 @@ class PostModel {
       createdAt: createdAt,
       interestId: interestId,
       interestName: interestName ?? this.interestName,
+      isLikedByCurrentUser:
+          isLikedByCurrentUser ?? this.isLikedByCurrentUser,
+      isSupportedByCurrentUser:
+          isSupportedByCurrentUser ?? this.isSupportedByCurrentUser,
     );
   }
 
@@ -59,6 +71,8 @@ class PostModel {
     shareCount: shareCount,
     createdAt: createdAt,
     interestName: interestName,
+    isLikedByCurrentUser: isLikedByCurrentUser,
+    isSupportedByCurrentUser: isSupportedByCurrentUser,
   );
 
   factory PostModel.fromMap(Map<String, dynamic> map) {
@@ -74,6 +88,8 @@ class PostModel {
       shareCount: map['shareCount'] as int? ?? 0,
       createdAt: _parseDateTime(map['createdAt']),
       interestId: map['interestId'] as String?,
+      isLikedByCurrentUser: false,
+      isSupportedByCurrentUser: false,
     );
   }
 

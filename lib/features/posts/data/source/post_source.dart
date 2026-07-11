@@ -22,7 +22,7 @@ class PostSource {
     await _firestore.collection(_postsCollection).add(postAddModel.toMap());
   }
 
-  Future<List<PostModel>> getPosts() async {
+  Future<List<PostModel>> getPosts({String? currentUserId}) async {
     final snapshot = await _firestore
         .collection(_postsCollection)
         .orderBy('createdAt', descending: true)
@@ -46,13 +46,37 @@ class PostSource {
         }
       }
 
-      posts.add(model.copyWith(interestName: interestName));
+      // Check if current user liked / supported this post
+      bool isLiked = false;
+      bool isSupported = false;
+      if (currentUserId != null) {
+        final likeDoc = await _postDoc(doc.id)
+            .collection(_likesCollection)
+            .doc(currentUserId)
+            .get();
+        isLiked = likeDoc.exists;
+
+        final supportDoc = await _postDoc(doc.id)
+            .collection(_supportsCollection)
+            .doc(currentUserId)
+            .get();
+        isSupported = supportDoc.exists;
+      }
+
+      posts.add(model.copyWith(
+        interestName: interestName,
+        isLikedByCurrentUser: isLiked,
+        isSupportedByCurrentUser: isSupported,
+      ));
     }
 
     return posts;
   }
 
-  Future<List<PostModel>> getPostsByUserId(String userId) async {
+  Future<List<PostModel>> getPostsByUserId(
+    String userId, {
+    String? currentUserId,
+  }) async {
     final snapshot = await _firestore
         .collection(_postsCollection)
         .where('user_id', isEqualTo: userId)
@@ -76,7 +100,28 @@ class PostSource {
         }
       }
 
-      posts.add(model.copyWith(interestName: interestName));
+      // Check if current user liked / supported this post
+      bool isLiked = false;
+      bool isSupported = false;
+      if (currentUserId != null) {
+        final likeDoc = await _postDoc(doc.id)
+            .collection(_likesCollection)
+            .doc(currentUserId)
+            .get();
+        isLiked = likeDoc.exists;
+
+        final supportDoc = await _postDoc(doc.id)
+            .collection(_supportsCollection)
+            .doc(currentUserId)
+            .get();
+        isSupported = supportDoc.exists;
+      }
+
+      posts.add(model.copyWith(
+        interestName: interestName,
+        isLikedByCurrentUser: isLiked,
+        isSupportedByCurrentUser: isSupported,
+      ));
     }
 
     // Sort client-side to avoid needing a composite index
@@ -134,10 +179,47 @@ class PostSource {
     final batch = _firestore.batch();
     batch.set(_postDoc(postId).collection(_supportsCollection).doc(userId), {
       'user_id': userId,
-      'created_at': FieldValue.serverTimestamp(),
+      'created_at': Timestamp.now(),
     });
     batch.update(_postDoc(postId), {'supportCount': FieldValue.increment(1)});
     await batch.commit();
+  }
+
+  Future<void> unsupportPost(String userId, String postId) async {
+    final batch = _firestore.batch();
+    batch.delete(_postDoc(postId).collection(_supportsCollection).doc(userId));
+    batch.update(_postDoc(postId), {'supportCount': FieldValue.increment(-1)});
+    await batch.commit();
+  }
+
+  /// Total supports received across all posts by this user
+  Future<int> getUserSupportsReceived(String userId) async {
+    final snapshot = await _firestore
+        .collection(_postsCollection)
+        .where('user_id', isEqualTo: userId)
+        .get();
+
+    int total = 0;
+    for (final doc in snapshot.docs) {
+      total += (doc.data()['supportCount'] as int? ?? 0);
+    }
+    return total;
+  }
+
+  /// Number of posts this user has supported
+  Future<int> getUserSupportingCount(String userId) async {
+    try {
+      final snapshot = await _firestore
+          .collectionGroup(_supportsCollection)
+          .where('user_id', isEqualTo: userId)
+          .get();
+
+      return snapshot.docs.length;
+    } on FirebaseException catch (e) {
+      // Collection group query requires an index; return 0 gracefully
+      if (e.code == 'failed-precondition') return 0;
+      rethrow;
+    }
   }
 
   // ---- Shares ----

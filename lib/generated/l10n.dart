@@ -846,6 +846,26 @@ class S {
       args: [],
     );
   }
+
+  /// `For Me`
+  String get forMe {
+    return Intl.message(
+      'For Me',
+      name: 'forMe',
+      desc: 'Filter chip label for posts matching user interests',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: 'Filter chip label to show all posts',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -26,17 +26,23 @@ class PostRepoImpl extends PostRepo {
   }
 
   @override
-  Future<Either<Failure, List<Post>>> getPosts() async {
+  Future<Either<Failure, List<Post>>> getPosts({String? currentUserId}) async {
     return ErrorConverter.safeCall<List<Post>>(() async {
-      final models = await source.getPosts();
+      final models = await source.getPosts(currentUserId: currentUserId);
       return models.map((m) => m.toEntity()).toList();
     });
   }
 
   @override
-  Future<Either<Failure, List<Post>>> getPostsByUserId(String userId) async {
+  Future<Either<Failure, List<Post>>> getPostsByUserId(
+    String userId, {
+    String? currentUserId,
+  }) async {
     return ErrorConverter.safeCall<List<Post>>(() async {
-      final models = await source.getPostsByUserId(userId);
+      final models = await source.getPostsByUserId(
+        userId,
+        currentUserId: currentUserId,
+      );
       return models.map((m) => m.toEntity()).toList();
     });
   }
@@ -77,9 +83,30 @@ class PostRepoImpl extends PostRepo {
   }
 
   @override
+  Future<Either<Failure, void>> unsupportPost(PostSupportParams params) async {
+    return ErrorConverter.safeCall<void>(() async {
+      await source.unsupportPost(params.userId, params.postId);
+    });
+  }
+
+  @override
   Future<Either<Failure, void>> sharePost(PostShareParams params) async {
     return ErrorConverter.safeCall<void>(() async {
       await source.sharePost(params.userId, params.postId);
+    });
+  }
+
+  @override
+  Future<Either<Failure, int>> getUserSupportsReceived(String userId) async {
+    return ErrorConverter.safeCall<int>(() async {
+      return await source.getUserSupportsReceived(userId);
+    });
+  }
+
+  @override
+  Future<Either<Failure, int>> getUserSupportingCount(String userId) async {
+    return ErrorConverter.safeCall<int>(() async {
+      return await source.getUserSupportingCount(userId);
     });
   }
 }

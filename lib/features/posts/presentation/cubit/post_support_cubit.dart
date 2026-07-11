@@ -18,4 +18,13 @@ class PostSupportCubit extends Cubit<BaseState> {
       (_) => emit(state.setSuccessState(null)),
     );
   }
+
+  void unsupportPost(PostSupportParams params) async {
+    emit(state.setInProgressState());
+    final res = await _postRepo.unsupportPost(params);
+    res.fold(
+      (fail) => emit(state.setFailureState(fail)),
+      (_) => emit(state.setSuccessState(null)),
+    );
+  }
 }

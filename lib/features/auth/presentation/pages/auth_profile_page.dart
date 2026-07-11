@@ -11,6 +11,7 @@ import 'package:tozher/features/interests/domain/entity/interest.dart';
 import 'package:tozher/features/interests/presentation/cubit/interests_get_user_cubit.dart';
 import 'package:tozher/features/posts/domain/entity/post.dart';
 import 'package:tozher/features/posts/presentation/cubit/post_user_get_cubit.dart';
+import 'package:tozher/features/posts/presentation/cubit/profile_support_stats_cubit.dart';
 import 'package:tozher/injection.dart';
 import 'package:tozher/routing/route_names.dart';
 import 'package:tozher/theme/app_colors.dart';
@@ -19,15 +20,16 @@ class AuthProfilePage extends StatefulWidget {
   const AuthProfilePage({super.key});
 
   @override
-  State<AuthProfilePage> createState() => _AuthProfilePageState();
+  State<AuthProfilePage> createState() => AuthProfilePageState();
 }
 
-class _AuthProfilePageState extends State<AuthProfilePage>
+class AuthProfilePageState extends State<AuthProfilePage>
     with SingleTickerProviderStateMixin {
   late final AuthLoginCubit _authLoginCubit;
   late final InterestsGetUserCubit _interestsCubit;
   late final PostUserGetCubit _postGetCubit;
   late final GoalGetCubit _goalGetCubit;
+  late final ProfileSupportStatsCubit _statsCubit;
   late final TabController _tabController;
 
   @override
@@ -37,6 +39,7 @@ class _AuthProfilePageState extends State<AuthProfilePage>
     _interestsCubit = getIt<InterestsGetUserCubit>();
     _postGetCubit = getIt<PostUserGetCubit>();
     _goalGetCubit = getIt<GoalGetCubit>();
+    _statsCubit = getIt<ProfileSupportStatsCubit>();
     _tabController = TabController(length: 2, vsync: this);
 
     _loadData();
@@ -48,8 +51,12 @@ class _AuthProfilePageState extends State<AuthProfilePage>
       _interestsCubit.getInterests(user!.uid!);
       _postGetCubit.getPostsByUserId(user.uid!);
       _goalGetCubit.getGoals(user.uid!);
+      _statsCubit.loadStats(user.uid!);
     }
   }
+
+  /// Called externally (e.g. from HomeLayout) to refresh data
+  void reloadData() => _loadData();
 
   @override
   void dispose() {
@@ -168,35 +175,43 @@ class _AuthProfilePageState extends State<AuthProfilePage>
   // Stats Cards – Points, Supports, Supporting
   // ---------------------------------------------------------------------------
   Widget _buildStatsRow(UserModel user) {
-    return Row(
-      children: [
-        Expanded(
-          child: _buildStatCard(
-            title: 'Points',
-            value: '${user.points ?? 0}',
-            icon: Icons.stars_rounded,
-            color: AppColors.primary,
-          ),
-        ),
-        Gap(10.w),
-        Expanded(
-          child: _buildStatCard(
-            title: 'Supports',
-            value: '120',
-            icon: Icons.favorite_rounded,
-            color: AppColors.accent,
-          ),
-        ),
-        Gap(10.w),
-        Expanded(
-          child: _buildStatCard(
-            title: 'Supporting',
-            value: '85',
-            icon: Icons.volunteer_activism_rounded,
-            color: AppColors.success,
-          ),
-        ),
-      ],
+    return ReusableBlocBuilder<ProfileSupportStatsCubit, ProfileSupportStats>(
+      cubit: _statsCubit,
+      onRetry: () => _statsCubit.loadStats(user.uid!),
+      builder: (context, state) {
+        final stats = state.item;
+
+        return Row(
+          children: [
+            Expanded(
+              child: _buildStatCard(
+                title: 'Points',
+                value: '${user.points ?? 0}',
+                icon: Icons.stars_rounded,
+                color: AppColors.primary,
+              ),
+            ),
+            Gap(10.w),
+            Expanded(
+              child: _buildStatCard(
+                title: 'Supports',
+                value: '${stats?.supportsReceived ?? 0}',
+                icon: Icons.favorite_rounded,
+                color: AppColors.accent,
+              ),
+            ),
+            Gap(10.w),
+            Expanded(
+              child: _buildStatCard(
+                title: 'Supporting',
+                value: '${stats?.supportingCount ?? 0}',
+                icon: Icons.volunteer_activism_rounded,
+                color: AppColors.success,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

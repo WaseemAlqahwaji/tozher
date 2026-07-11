@@ -9,7 +9,10 @@ import 'package:tozher/generated/l10n.dart';
 import 'package:tozher/injection.dart';
 
 class PostPage extends StatefulWidget {
-  const PostPage({super.key});
+  final String? filterInterestName;
+  final List<String>? userInterestNames;
+
+  const PostPage({super.key, this.filterInterestName, this.userInterestNames});
 
   @override
   State<PostPage> createState() => _PostPageState();
@@ -22,6 +25,28 @@ class _PostPageState extends State<PostPage> {
   void initState() {
     super.initState();
     postGetCubit.getPosts();
+  }
+
+  List<Post> _filterPosts(List<Post> posts) {
+    if (widget.filterInterestName == null) return posts;
+
+    // "For Me" – filter by user's interests
+    if (widget.filterInterestName == '__for_me__') {
+      final userInterests = widget.userInterestNames ?? [];
+      if (userInterests.isEmpty) return posts;
+      return posts
+          .where(
+            (p) =>
+                p.interestName != null &&
+                userInterests.contains(p.interestName),
+          )
+          .toList();
+    }
+
+    // Filter by specific interest
+    return posts
+        .where((p) => p.interestName == widget.filterInterestName)
+        .toList();
   }
 
   @override
@@ -39,7 +64,7 @@ class _PostPageState extends State<PostPage> {
           return Center(child: Text(strings.errorHappend));
         }
 
-        final posts = state.item ?? [];
+        final posts = _filterPosts(state.item ?? []);
 
         if (posts.isEmpty) {
           return Center(child: Text(strings.noPostsYet));

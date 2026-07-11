@@ -40,4 +40,15 @@ class AuthSource {
       throw Exception("username already taken");
     }
   }
+
+  Future<List<UserModel>> searchUsers(String query) async {
+    final snapshot = await _firestore
+        .collection(collectionName)
+        .orderBy('username')
+        .startAt([query]).endAt(['$query\uf8ff']).get();
+
+    return snapshot.docs
+        .map((doc) => UserModel.fromMap(doc.data())..uid = doc.id)
+        .toList();
+  }
 }
