@@ -508,7 +508,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
           ? Image.network(
               post.photos.first,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => _buildPlaceholderTile(),
+              errorBuilder: (_, _, _) => _buildPlaceholderTile(),
             )
           : _buildPlaceholderTile(),
     );
@@ -566,7 +566,7 @@ class AuthProfilePageState extends State<AuthProfilePage>
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: publicGoals.length,
-          separatorBuilder: (_, __) => Gap(8.h),
+          separatorBuilder: (_, _) => Gap(8.h),
           itemBuilder: (context, index) {
             final goal = publicGoals[index];
             return _buildGoalTile(goal);

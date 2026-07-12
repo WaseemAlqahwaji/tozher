@@ -229,7 +229,7 @@ class _SearchPageState extends State<SearchPage>
         return ListView.separated(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           itemCount: users.length,
-          separatorBuilder: (_, __) => Gap(8.h),
+          separatorBuilder: (_, _) => Gap(8.h),
           itemBuilder: (_, i) => _buildUserTile(users[i]),
         );
       },

@@ -108,7 +108,7 @@ class _InterestsUserAddPageState extends State<InterestsUserAddPage> {
             child: ListView.separated(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               itemCount: allInterests.length,
-              separatorBuilder: (_, __) => Gap(4.h),
+              separatorBuilder: (_, _) => Gap(4.h),
               itemBuilder: (context, index) {
                 final interest = allInterests[index];
                 final isSelected = _selectedIds.contains(interest.id);
